@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar color='primary' >
+    <ion-title>Event Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+
+    <ion-item>
+      <ion-input type='text' placeholder='Event Title' [(ngModel)]='event.title' ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Start</ion-label>
+      <ion-datetime displayFormat='MM/DD/YYYY hh:mm' pickFormat='MM/DD/YYYY' [(ngModel)]='event.startTime' [min]='minDate' ></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>End</ion-label>
+      <ion-datetime displayFormat='MM/DD/YYYY hh:mm' pickFormat='MM/DD/YYYY' [(ngModel)]='event.endTime' [min]='minDate' ></ion-datetime>
+    </ion-item>
+
+  </ion-list>
+
+  <button color='secondary' ion-button full icon-left (click)='save()' >
+    <ion-icon name='checkmark' ></ion-icon> Add event
+  </button>
+  <button color='light' ion-button full (click)='cancel()' >Cancel
+  </button>
+
+</ion-content>

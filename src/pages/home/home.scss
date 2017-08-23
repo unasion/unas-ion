@@ -1,3 +1,13 @@
-page-home {
+.monthview-selected{
+    background: rgba(0, 255, 204,0.3) !important;
+    color: black !important;
+}
+.monthview-primary-with-event{
+    background: rgba(255, 128, 128,0.6) !important;
+    color: white !important;
+}
 
+.monthview-current{
+    background: #ff4d4d !important;
+    color: white !important;
 }
