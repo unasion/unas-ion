@@ -1,5 +1,10 @@
 <ion-header>
   <ion-navbar color='primary' >
+    <ion-buttons start>
+      <button ion-button icon-only >
+        <ion-icon name='ios-contact'></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>Home</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)='addEvent()' >
@@ -14,7 +19,39 @@
    <ion-card>
     <ion-card-header text-left color='primary' >Daily Stats</ion-card-header>
     <ion-card-content>
-      Stats go here
+      <ion-list>
+
+        <ion-item >
+          <ion-icon name="logo-usd" item-start></ion-icon>
+          <div class='stats-view' >
+            <div>Wages:</div>
+            <div>$300</div>
+          </div>
+        </ion-item>
+        <ion-item >
+          <ion-icon name="md-cash" item-start></ion-icon>
+          <div class='stats-view' >
+            <div>Tips:</div>
+            <div>$48</div>
+          </div>
+        </ion-item>
+        <ion-item >
+          <ion-icon name="ios-clock-outline" item-start></ion-icon>
+          <div class='stats-view' >
+            <div>Time Spent on Cuts:</div>
+            <div>89 mins</div>
+          </div>
+        </ion-item>
+        <ion-item >
+          <ion-icon name="md-calendar" item-start></ion-icon>
+          <div class='stats-view' >
+            <div>Upcomming Appointments:</div>
+            <div>5</div>
+          </div>
+        </ion-item>
+
+      </ion-list>
+      
    
     </ion-card-content>
 
