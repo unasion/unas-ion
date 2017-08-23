@@ -4,8 +4,9 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { NgCalendarModule } from 'ionic2-calendar'
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+
+import { ApptPage } from '../pages/appt/appt';
+import { StatsPage } from '../pages/stats/stats';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login'
 import { EventModalPage } from '../pages/event-modal/event-modal'
@@ -18,8 +19,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    ApptPage,
+    StatsPage,
     HomePage,
     TabsPage,
     LoginPage,
@@ -33,8 +34,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    ApptPage,
+    StatsPage,
     HomePage,
     TabsPage,
     LoginPage,
