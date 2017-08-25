@@ -19,14 +19,15 @@
     <ion-grid>
       <ion-row text-center >
         <ion-col> <a (click)='dayView()'  > Today </a> </ion-col>
-        <ion-col> <a (click)='weekView()' > Week  </a>  </ion-col>
         <ion-col> <a (click)='monthView()' > Month  </a>  </ion-col>
       </ion-row>
     </ion-grid>
   </ion-toolbar>
     
-    <h6 style="color:#ff4d4d; margin-left: 5%" >{{ viewTitle }}</h6>
-    <div padding>
+
+    <ion-card *ngIf='calendar.mode==="month"' >
+      <ion-card-header text-left color='primary' >{{ viewTitle }}</ion-card-header>
+      <ion-card-content>
       <calendar
         [eventSource]='eventSource'
         [calendarMode]='calendar.mode'
@@ -37,16 +38,22 @@
         step='30'
         class='calendar'
       ></calendar> 
-    </div>
+    </ion-card-content>
 
-    <div>
-      <ion-item-group *ngFor='let event of current'>
-        <ion-item>
-          Name: {{ event.Title }}
-          <br> From: {{ event.startTime }} 
-          <br> To: {{ event.endTime }}
-        </ion-item>
-      </ion-item-group>
+  </ion-card>
+
+    <div *ngIf='calendar.mode==="day"' >
+
+      <ion-list>
+          <ion-item *ngFor='let event of current' >
+            <div class='appt-info' > 
+              <div> {{ event.Title }} </div>
+              <div> <p> {{ event.Notes }} </p> </div>   
+            </div>
+            <p>Start: {{ event.startTime }}</p> 
+          </ion-item>
+      </ion-list>
+
     </div>
 
     

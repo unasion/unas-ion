@@ -11,7 +11,25 @@
   <ion-list>
 
     <ion-item>
-      <ion-input type='text' placeholder='Event Title' [(ngModel)]='event.title' ></ion-input>
+      <ion-label>Client Infomation</ion-label>
+      <ion-select interface="popover" [(ngModel)]="event.Title">
+        <ion-option value="Dave">Dave</ion-option>
+        <ion-option value="Jim">Jim</ion-option>
+        <ion-option value="John">John</ion-option>
+        <ion-option value="Larry">Larry</ion-option>
+        <ion-option value="Bob">Bob</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Type of Cut</ion-label>
+      <ion-select interface="popover" [(ngModel)]="event.Notes">
+        <ion-option value="Haircut">Haircut</ion-option>
+        <ion-option value="Beard trim">Beard trim</ion-option>
+        <ion-option value="Line Up">Line Up</ion-option>
+        <ion-option value="Fade">Fade</ion-option>
+        <ion-option value="Traditional Shave">Traditional Shave</ion-option>
+      </ion-select>
     </ion-item>
 
     <ion-item>
