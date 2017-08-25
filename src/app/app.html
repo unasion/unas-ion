@@ -1,14 +1,19 @@
 <ion-menu [content]="mycontent" [persistent]='true' type='overlay'>
   <ion-content class="side-profile">
     <ion-icon name="ios-contact" class="side-nav-icon"></ion-icon>
-    <ion-list class="side-content">
-    <ion-icon name="ios-contact" class='menu-icon'></ion-icon>Profile
-    </ion-list>
-    <ion-list class="side-content">
-    <ion-icon name="ios-contact" class='menu-icon'></ion-icon>Notifications
-    </ion-list>
-    <ion-list class="side-content">
-    <ion-icon name="ios-contact" class='menu-icon'></ion-icon>Settings
+    <ion-list>
+      <button ion-item class="menu-item">
+        <ion-icon name="ios-person-outline" class="menu-icon"></ion-icon>
+        Profile
+      </button>
+      <button ion-item class="menu-item">
+        <ion-icon name="ios-notifications-outline" class="menu-icon"></ion-icon>
+        Notifications
+      </button>
+      <button ion-item class="menu-item">
+        <ion-icon name="ios-settings-outline" class="menu-icon"></ion-icon>
+        Settings
+      </button>
     </ion-list>
   </ion-content>
 </ion-menu>
