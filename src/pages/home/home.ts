@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, AlertController } from 'ionic-angular';
+import { NavController, ModalController, AlertController, MenuController } from 'ionic-angular';
 import * as moment from 'moment'
 import { EventModalPage } from '../event-modal/event-modal'
 
@@ -9,6 +9,7 @@ import { EventModalPage } from '../event-modal/event-modal'
 })
 export class HomePage {
 
+  home = HomePage;
   eventSource = [];
   viewTitle: string;
   selectedDay = new Date()
@@ -19,9 +20,10 @@ export class HomePage {
   }
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     private modalCtrl: ModalController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    public menuCtrl: MenuController
   ) {
 
   }
@@ -67,5 +69,17 @@ export class HomePage {
     })
     alert.present()
   }
+
+  openMenu() {
+   this.menuCtrl.open();
+ }
+
+ closeMenu() {
+   this.menuCtrl.close();
+ }
+
+ toggleMenu() {
+   this.menuCtrl.toggle();
+ }
 
 }
