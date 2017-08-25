@@ -1,1 +1,21 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="mycontent" [persistent]='true' type='overlay'>
+  <ion-content class="side-profile">
+    <ion-icon name="ios-contact" class="side-nav-icon"></ion-icon>
+    <ion-list>
+      <button ion-item class="menu-item">
+        <ion-icon name="ios-person-outline" class="menu-icon"></ion-icon>
+        Profile
+      </button>
+      <button ion-item class="menu-item">
+        <ion-icon name="ios-notifications-outline" class="menu-icon"></ion-icon>
+        Notifications
+      </button>
+      <button ion-item class="menu-item">
+        <ion-icon name="ios-settings-outline" class="menu-icon"></ion-icon>
+        Settings
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #mycontent [root]="rootPage"></ion-nav>

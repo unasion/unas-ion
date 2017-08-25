@@ -1,18 +1,30 @@
-<!--
-  Generated template for the ApptStartPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>ApptStart</ion-title>
+  <ion-navbar color='primary' >
+    <ion-title>Start Appointment</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  
+  <ion-card>
+    <div>
+      <div> {{ event?.Title }} </div>
+      <div> <p> {{ event?.Notes }} </p> </div>
+    </div>
+    <p>Start: {{ event?.startTime }}</p>
+  </ion-card>
 
+  <button color='secondary' ion-button full icon-left>
+    <ion-icon name='ios-timer-outline'></ion-icon>Start Appointment
+  </button>
+  <button color='light' ion-button full icon-left>
+    <ion-icon name='ios-create-outline'></ion-icon>Edit Appointment
+  </button>
+  <button color='light' ion-button full icon-left>
+    <ion-icon name='ios-trash-outline'></ion-icon>Cancel Appointment
+  </button>
+  <button color='light' ion-button full icon-left (click)='cancel()'>
+    <ion-icon name='ios-arrow-round-back-outline'></ion-icon>Back to Appointments
+  </button>
 </ion-content>
