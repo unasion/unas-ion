@@ -1,11 +1,54 @@
 <ion-header>
   <ion-navbar color='primary' >
-    <ion-title>
-      Appts.
-    </ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only >
+        <ion-icon name='ios-contact'></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Appointments</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)='addEvent()' >
+        <ion-icon name='add'></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row text-center >
+        <ion-col> <a (click)='dayView()'  > Today </a> </ion-col>
+        <ion-col> <a (click)='weekView()' > Week  </a>  </ion-col>
+        <ion-col> <a (click)='monthView()' > Month  </a>  </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+    
+    <h6 style="color:#ff4d4d; margin-left: 5%" >{{ viewTitle }}</h6>
+    <div padding>
+      <calendar
+        [eventSource]='eventSource'
+        [calendarMode]='calendar.mode'
+        [currentDate]='calendar.currentDate'
+        (onEventSelected)='onEventSelected($event)'
+        (onTitleChanged)='onViewTitleChanged($event)'
+        (onTimeSelcted)='onTimeSelected($event)'
+        step='30'
+        class='calendar'
+      ></calendar> 
+    </div>
+
+    <div>
+      <ion-item-group *ngFor='let event of current'>
+        <ion-item>
+          Name: {{ event.Title }}
+          <br> From: {{ event.startTime }} 
+          <br> To: {{ event.endTime }}
+        </ion-item>
+      </ion-item-group>
+    </div>
+
+    
 
 </ion-content>
