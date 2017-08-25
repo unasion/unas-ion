@@ -60,8 +60,8 @@ export class ApptPage {
       if(data){
          this.current.push(
             {
-              'Notes': data.Notes,
-              'Title': data.Title,
+              'Notes': data.notes,
+              'Title': data.title,
               'startTime': moment(data.startTime).format('LLLL'),
               'endTime': moment(data.endTime).format('LLLL')
             })
@@ -76,7 +76,7 @@ export class ApptPage {
 
         setTimeout(()=>{
           this.eventSource = events
-          console.log('event source',this.eventSource);
+          // console.log('event source',this.eventSource);
         })
 
         return this.current
