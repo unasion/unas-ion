@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, AlertController } from 'ionic-angular';
+import { NavController, ModalController, AlertController, MenuController } from 'ionic-angular';
 import * as moment from 'moment'
 import { EventModalPage } from '../event-modal/event-modal'
+import { ApptStartPage } from '../appt-start/appt-start'
 
 
 @Component({
@@ -29,9 +30,10 @@ export class ApptPage {
   }
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     private modalCtrl: ModalController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    public menuCtrl: MenuController
   ) { }
 
   dayView(){
@@ -71,12 +73,12 @@ export class ApptPage {
         let events = this.eventSource
         events.push(eventData)
         this.eventSource = []
-        
+
         setTimeout(()=>{
           this.eventSource = events
           // console.log('event source',this.eventSource);
         })
-        
+
         return this.current
       }
     })
@@ -100,6 +102,11 @@ export class ApptPage {
       buttons: ['OK']
     })
     alert.present()
+  }
+
+  apptStartModal(event) {
+    let modal = this.modalCtrl.create(ApptStartPage, {event: event});
+    modal.present();
   }
 
 }
