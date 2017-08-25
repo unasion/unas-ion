@@ -15,7 +15,8 @@ export class ApptPage {
     {
     'startTime': moment(new Date()).format('LLLL'),
     'endTime': moment(new Date()).format('LLLL'),
-    'Title': 'Today'
+    'Title': 'Dominic',
+    'Notes': 'Haircut'
   }
   ];
   viewTitle: string;
@@ -23,6 +24,7 @@ export class ApptPage {
 
   calendar ={
     mode: 'day',
+    allDay: false,
     currentDate: this.selectedDay
   }
 
@@ -30,20 +32,12 @@ export class ApptPage {
     public navCtrl: NavController, 
     private modalCtrl: ModalController,
     private alertCtrl: AlertController
-  ) {
+  ) { }
 
-  }
-
-  weekView(){
-    this.calendar ={
-    mode: 'week',
-    currentDate: this.selectedDay
-  }
-
-  }
   dayView(){
     this.calendar ={
     mode: 'day',
+    allDay: false,
     currentDate: this.selectedDay
   }
 
@@ -51,6 +45,7 @@ export class ApptPage {
   monthView(){
     this.calendar ={
     mode: 'month',
+    allDay: false,
     currentDate: this.selectedDay
   }
   }
@@ -61,24 +56,27 @@ export class ApptPage {
 
     modal.onDidDismiss(data =>{
       if(data){
-        let eventData = data;
+         this.current.push(
+            {
+              'Notes': data.Notes,
+              'Title': data.Title,
+              'startTime': moment(data.startTime).format('LLLL'),
+              'endTime': moment(data.endTime).format('LLLL')
+            })
 
+        let eventData = data;
         eventData.startTime = new Date(data.startTime)
         eventData.endTime = new Date(data.endTime)
 
         let events = this.eventSource
         events.push(eventData)
-
-        this.current.push(
-            {
-              'startTime': moment(eventData.startTime).format('LLLL'),
-              'endTime': moment(eventData.endTime).format('LLLL'),
-              'Title': eventData.title
-            })
         this.eventSource = []
+        
         setTimeout(()=>{
           this.eventSource = events
+          console.log('event source',this.eventSource);
         })
+        
         return this.current
       }
     })
