@@ -34,6 +34,7 @@ export class HomePage {
 
     modal.onDidDismiss(data =>{
       if(data){
+        console.log(data);
         let eventData = data;
 
         eventData.startTime = new Date(data.startTime)
