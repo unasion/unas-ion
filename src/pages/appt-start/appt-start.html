@@ -1,15 +1,30 @@
 <ion-header>
   <ion-navbar color='primary' >
-    <ion-buttons start>
-      <button ion-button icon-only menuToggle>
-        <ion-icon name='ios-contact'></ion-icon>
-      </button>
-    </ion-buttons>
     <ion-title>Start Appointment</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   
+  <ion-card>
+    <div>
+      <div> {{ event?.Title }} </div>
+      <div> <p> {{ event?.Notes }} </p> </div>
+    </div>
+    <p>Start: {{ event?.startTime }}</p>
+  </ion-card>
+
+  <button color='secondary' ion-button full icon-left>
+    <ion-icon name='ios-timer-outline'></ion-icon>Start Appointment
+  </button>
+  <button color='light' ion-button full icon-left>
+    <ion-icon name='ios-create-outline'></ion-icon>Edit Appointment
+  </button>
+  <button color='light' ion-button full icon-left>
+    <ion-icon name='ios-trash-outline'></ion-icon>Cancel Appointment
+  </button>
+  <button color='light' ion-button full icon-left (click)='cancel()'>
+    <ion-icon name='ios-arrow-round-back-outline'></ion-icon>Back to Appointments
+  </button>
 </ion-content>
