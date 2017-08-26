@@ -16,8 +16,6 @@ export class ApptStartPage {
     this.event = this.navParams.get('event')
   }
 
-
-
   cancel(){
     this.viewCtrl.dismiss()
   }

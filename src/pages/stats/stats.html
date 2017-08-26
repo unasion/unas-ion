@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color='primary' >
     <ion-title>
-      Stats
+      Statistics
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -10,10 +10,37 @@
   
     <ion-card>
       <ion-card-header>
-        Doughnut Chart
+        Wages
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #lineCanvas2 ></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        Tips
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #lineCanvas3  ></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        Wages vs. Tips
       </ion-card-header>
       <ion-card-content>
         <canvas #doughnutCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        Time Spent Cutting
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #lineCanvas ></canvas>
       </ion-card-content>
     </ion-card>
 
