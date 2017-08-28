@@ -13,7 +13,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApptStartPage } from '../pages/appt-start/appt-start';
 import { EditApptModalPage } from '../pages/edit-appt-modal/edit-appt-modal';
-
+import { AuthService } from '../providers/authservice/authservice';
 
 @NgModule({
   declarations: [
@@ -47,7 +47,8 @@ import { EditApptModalPage } from '../pages/edit-appt-modal/edit-appt-modal';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthService
   ]
 })
 export class AppModule {}

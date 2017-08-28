@@ -3,17 +3,10 @@
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     color: white;
 }
 .login-btn h1{
     font-size: 52px;
 }
-.login-logo{
-    background-image: url('./../../assets/Barbershop-img.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 80%;
-    height: 200px;
-    opacity: .9;
-}
+

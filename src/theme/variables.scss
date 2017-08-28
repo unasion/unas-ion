@@ -42,6 +42,7 @@ $colors: (
   dark:       #222
 );
 
+
 .bgi{
     background-image: url('./../assets/loginimage.jpg');
     background-repeat: no-repeat;
@@ -49,6 +50,15 @@ $colors: (
     background-position: 65%;
     width: 100%;
     height: 100%;
+}
+
+.login-logo{
+    background-image: url('./../assets/Barbershop-img.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80%;
+    height: 200px;
+    opacity: .9;
 }
 
 

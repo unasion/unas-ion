@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs'
+import { AuthService } from '../../providers/authservice/authservice'
 
 
 @Component({
@@ -9,7 +10,7 @@ import { TabsPage } from '../tabs/tabs'
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthService) {
   }
 
   goHome(){
