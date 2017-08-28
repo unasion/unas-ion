@@ -6,7 +6,6 @@
 
 
 <ion-content>
-  
   <ion-card>
     <div>
       <div> {{ event?.Title }} </div>
@@ -15,10 +14,10 @@
     <p>Start: {{ event?.startTime }}</p>
   </ion-card>
 
-  <button color='secondary' ion-button full icon-left>
+  <button color='secondary' ion-button full icon-left (click)='timerModal()'>
     <ion-icon name='ios-timer-outline'></ion-icon>Start Appointment
   </button>
-  <button color='light' ion-button full icon-left>
+  <button color='light' ion-button full icon-left (click)='editApptModal()'>
     <ion-icon name='ios-create-outline'></ion-icon>Edit Appointment
   </button>
   <button color='light' ion-button full icon-left>
