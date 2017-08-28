@@ -12,6 +12,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApptStartPage } from '../pages/appt-start/appt-start';
+import { EditApptModalPage } from '../pages/edit-appt-modal/edit-appt-modal';
 import { AuthService } from '../providers/authservice/authservice';
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AuthService } from '../providers/authservice/authservice';
     TabsPage,
     LoginPage,
     EventModalPage,
-    ApptStartPage
+    ApptStartPage,
+    EditApptModalPage
   ],
   imports: [
     NgCalendarModule,
@@ -39,7 +41,8 @@ import { AuthService } from '../providers/authservice/authservice';
     TabsPage,
     LoginPage,
     EventModalPage,
-    ApptStartPage
+    ApptStartPage,
+    EditApptModalPage
   ],
   providers: [
     StatusBar,
