@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar color='primary'>
+    <ion-title>Start Appointment</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <timer #timer timeInSeconds="0"></timer>
+
+  <button color='secondary' ion-button full icon-left (click)='surveyModal()'>
+    <ion-icon name='ios-checkmark-outline'></ion-icon>Finish Appointment
+  </button>
+
+  <button color='light' ion-button full icon-left (click)='cancel()'>
+    <ion-icon name='ios-arrow-round-back-outline'></ion-icon>Back to Appointment
+  </button>
+
+
+</ion-content>

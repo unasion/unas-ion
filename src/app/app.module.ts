@@ -14,6 +14,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApptStartPage } from '../pages/appt-start/appt-start';
 import { EditApptModalPage } from '../pages/edit-appt-modal/edit-appt-modal';
 import { AuthService } from '../providers/authservice/authservice';
+import { TimerPage } from '../pages/timer/timer';
+import { TimerComponent } from '../components/timer/timer';
+import { ApptSurveyPage } from '../pages/appt-survey/appt-survey';
+import { Ionic2RatingModule } from 'ionic2-rating';
 
 @NgModule({
   declarations: [
@@ -25,12 +29,16 @@ import { AuthService } from '../providers/authservice/authservice';
     LoginPage,
     EventModalPage,
     ApptStartPage,
-    EditApptModalPage
+    EditApptModalPage,
+    TimerPage,
+    TimerComponent,
+    ApptSurveyPage
   ],
   imports: [
     NgCalendarModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    Ionic2RatingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,7 +50,9 @@ import { AuthService } from '../providers/authservice/authservice';
     LoginPage,
     EventModalPage,
     ApptStartPage,
-    EditApptModalPage
+    EditApptModalPage,
+    TimerPage,
+    ApptSurveyPage
   ],
   providers: [
     StatusBar,

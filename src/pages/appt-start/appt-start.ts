@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 import { EditApptModalPage } from '../edit-appt-modal/edit-appt-modal';
+import { TimerPage } from '../timer/timer';
+// import { TimerComponent } from '../../components/timer/timer';
 
 
 @Component({
@@ -8,6 +10,8 @@ import { EditApptModalPage } from '../edit-appt-modal/edit-appt-modal';
   templateUrl: 'appt-start.html',
 })
 export class ApptStartPage {
+
+  @ViewChild(TimerPage) timer: TimerPage;
 
   event: any;
 
@@ -23,6 +27,11 @@ export class ApptStartPage {
 
   editApptModal() {
     let modal = this.modalCtrl.create(EditApptModalPage);
+    modal.present();
+  }
+
+  timerModal() {
+    let modal = this.modalCtrl.create(TimerPage);
     modal.present();
   }
 
