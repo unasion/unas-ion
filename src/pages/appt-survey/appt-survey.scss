@@ -1,0 +1,27 @@
+page-appt-survey {
+  ul {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+
+    &.rating li {
+      padding: 5px 10px !important;
+      background: none;
+      color: #ff4d4d;
+
+
+      ion-icon {
+        font-size: 40px;
+      }
+    }
+  }
+
+  .card-content{
+    display: flex;
+    justify-content: center;
+  }
+  
+  input.text-input{
+    color: #ff4d4d;
+  }
+}
