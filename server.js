@@ -5,7 +5,8 @@ const express = require('express'),
       passport = require('passport'),
       Auth0Strategy = require('passport-auth0'),
       // config = require('./config.js'),
-      cors = require('cors');
+      cors = require('cors'),
+      http = require('http');
 
 const app = express();
 
@@ -22,19 +23,20 @@ app.use(express.static(__dirname + '/www'));
 
 
 
-/////////////
+//////////////
 // DATABASE //
-/////////////
+//////////////
 
 massive("postgres://uunjpeyj:yVNsIpBpaTMB_a2TXEss-Gmq1DGSIOte@pellefant.db.elephantsql.com:5432/uunjpeyj").then(massiveInstance => {
     app.set('db', massiveInstance);
     const db = app.get('db');
 
     app.get('/api/test', (req,res) => {
-      app.get('db').test_end((err, users) => {
+      db.test_end((err, users) => {
       }).then(users => res.send(users))
     })
 
 });
 
-app.listen(3000, () => {console.log('listening on 3000')})
+const server = http.createServer(app);
+server.listen( 3001, ()=> {console.log('Connected on 3001')})

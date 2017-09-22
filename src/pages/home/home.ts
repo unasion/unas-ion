@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController, AlertController, MenuController } from 'ionic-angular';
 import * as moment from 'moment'
-import { EventModalPage } from '../event-modal/event-modal'
+import { EventModalPage } from '../event-modal/event-modal';
+import { HttpServiceProvider } from '../../providers/http-service/http-service'
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  test: any;
 
   home = HomePage;
   eventSource = [];
@@ -23,9 +25,18 @@ export class HomePage {
     public navCtrl: NavController,
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
-    public menuCtrl: MenuController
+    public menuCtrl: MenuController,
+    public httpService: HttpServiceProvider
   ) {
 
+  }
+
+  ionViewDidLoad() {
+    console.log('home loaded')
+    this.httpService.testPoint().subscribe(test => {
+      this.test = test;
+      console.log(this.test);
+    })
   }
 
   addEvent(){

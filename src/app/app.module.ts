@@ -14,6 +14,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApptStartPage } from '../pages/appt-start/appt-start';
 import { EditApptModalPage } from '../pages/edit-appt-modal/edit-appt-modal';
 import { AuthService } from '../providers/authservice/authservice';
+import { HttpServiceProvider } from '../providers/http-service/http-service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { AuthService } from '../providers/authservice/authservice';
   imports: [
     NgCalendarModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -48,7 +51,8 @@ import { AuthService } from '../providers/authservice/authservice';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthService
+    AuthService,
+    HttpServiceProvider
   ]
 })
 export class AppModule {}
