@@ -42,7 +42,11 @@ $colors: (
   dark:       #222
 );
 
+$text-input-placeholder-color:(#222);
+
 $text-input-placeholder-color:(rgba(255, 77, 77, .6));
+
+$popover-width: (width: 80%);
 
 .bgi{
     background-image: url('./../assets/loginimage.jpg');
@@ -60,6 +64,24 @@ $text-input-placeholder-color:(rgba(255, 77, 77, .6));
     width: 80%;
     height: 200px;
     opacity: .9;
+}
+
+.popover-content {
+    width: 80vw !important;
+    left: 10%;
+    padding-bottom: 5px;
+    top: -20%; 
+}
+.login-pop-user{
+    color: #ff4d4d !important;
+    margin: 0 !important;
+}
+.popover-text{
+    padding: 5px;
+    color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 

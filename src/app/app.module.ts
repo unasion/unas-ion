@@ -18,6 +18,7 @@ import { TimerPage } from '../pages/timer/timer';
 import { TimerComponent } from '../components/timer/timer';
 import { ApptSurveyPage } from '../pages/appt-survey/appt-survey';
 import { Ionic2RatingModule } from 'ionic2-rating';
+import { LoginPopOverPage } from '../pages/login-pop-over/login-pop-over'
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     EditApptModalPage,
     TimerPage,
     TimerComponent,
-    ApptSurveyPage
+    ApptSurveyPage,
+    LoginPopOverPage
   ],
   imports: [
     NgCalendarModule,
@@ -52,7 +54,8 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     ApptStartPage,
     EditApptModalPage,
     TimerPage,
-    ApptSurveyPage
+    ApptSurveyPage,
+    LoginPopOverPage
   ],
   providers: [
     StatusBar,
