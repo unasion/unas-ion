@@ -1,0 +1,38 @@
+<ion-content class='login-pop-all' >
+
+    <ion-icon class='side-nav-icon login-pop-user' name="md-contact" ></ion-icon>
+    <h4 text-center >User Login</h4>
+    <ion-list>
+      <div *ngIf='newUser' >
+          <ion-item>
+            <input [(ngModel)]='userData.firstName' color='dark' placeholder='First Name' type="text" />
+          </ion-item>
+          <ion-item>
+            <input [(ngModel)]='userData.lastName' placeholder='Last Name' type="text"/>
+          </ion-item>
+      </div>
+          <ion-item>
+            <input [(ngModel)]='userData.userName' placeholder='Email'  type="text" />
+          </ion-item>
+          <ion-item>
+            <input [(ngModel)]='userData.password' placeholder='Password'  type="password"/>
+          </ion-item>
+    </ion-list>
+
+        <button *ngIf='!newUser' (click)='login()' ion-button full>
+          Login
+        </button>
+        <button *ngIf='newUser' (click)='login()' ion-button full>
+          SignUp
+        </button>
+        <button color='secondary' (click)='cancel()' ion-button full>
+          Cancel
+        </button>
+
+      <div class='popover-text' >
+        <a *ngIf='!newUser'  (click)='newUser=!newUser'> Create an Account? </a>
+        <a *ngIf='newUser' (click)='newUser=!newUser'> Have an Account? </a>
+      </div>
+
+
+</ion-content>
