@@ -21,6 +21,7 @@ import { ApptSurveyPage } from '../pages/appt-survey/appt-survey';
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { LoginPopOverPage } from '../pages/login-pop-over/login-pop-over'
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { IonicStorageModule } from '@ionic/storage';
     EditApptModalPage,
     TimerPage,
     TimerComponent,
-    ApptSurveyPage
+    ApptSurveyPage,
+    LoginPopOverPage
   ],
   imports: [
     NgCalendarModule,
@@ -58,7 +60,8 @@ import { IonicStorageModule } from '@ionic/storage';
     ApptStartPage,
     EditApptModalPage,
     TimerPage,
-    ApptSurveyPage
+    ApptSurveyPage,
+    LoginPopOverPage
   ],
   providers: [
     StatusBar,
