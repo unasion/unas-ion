@@ -15,7 +15,13 @@ import { ApptStartPage } from '../pages/appt-start/appt-start';
 import { EditApptModalPage } from '../pages/edit-appt-modal/edit-appt-modal';
 import { AuthService } from '../providers/authservice/authservice';
 import { HttpServiceProvider } from '../providers/http-service/http-service';
+import { TimerPage } from '../pages/timer/timer';
+import { TimerComponent } from '../components/timer/timer';
+import { ApptSurveyPage } from '../pages/appt-survey/appt-survey';
+import { Ionic2RatingModule } from 'ionic2-rating';
 import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
+
 
 @NgModule({
   declarations: [
@@ -27,13 +33,18 @@ import { HttpModule } from '@angular/http';
     LoginPage,
     EventModalPage,
     ApptStartPage,
-    EditApptModalPage
+    EditApptModalPage,
+    TimerPage,
+    TimerComponent,
+    ApptSurveyPage
   ],
   imports: [
     NgCalendarModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    IonicStorageModule.forRoot(),
+    HttpModule,
+    Ionic2RatingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,7 +56,9 @@ import { HttpModule } from '@angular/http';
     LoginPage,
     EventModalPage,
     ApptStartPage,
-    EditApptModalPage
+    EditApptModalPage,
+    TimerPage,
+    ApptSurveyPage
   ],
   providers: [
     StatusBar,

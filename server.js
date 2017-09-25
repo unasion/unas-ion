@@ -36,6 +36,28 @@ massive("postgres://uunjpeyj:yVNsIpBpaTMB_a2TXEss-Gmq1DGSIOte@pellefant.db.eleph
       }).then(users => res.send(users))
     })
 
+    app.post('/api/contacts', (req, res) => {
+      db.getAllContacts(req.body.id, (err, contacts)=> {
+      }).then(contacts => res.send(contacts))
+    })
+
+    app.post('/api/barbers', (req, res) => {
+      db.get_barbers(req.body.id, (err, contacts)=> {
+      }).then(contacts => res.send(contacts))
+    })
+
+    app.post('/api/services', (req, res) => {
+      db.get_services(req.body.id, (err, contacts)=> {
+      }).then(contacts => res.send(contacts))
+    })
+
+    app.post('/api/add-appt', (req, res) => {
+      console.log(req.body);
+      db.add_appt(req.body.id, (err, contacts)=> {
+        console.log(err);
+      }).then(contacts => res.send(contacts))
+    })
+
 });
 
 const server = http.createServer(app);

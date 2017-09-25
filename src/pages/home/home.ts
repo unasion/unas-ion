@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, ModalController, AlertController, MenuController } from 'ionic-angular';
 import * as moment from 'moment'
 import { EventModalPage } from '../event-modal/event-modal';
-import { HttpServiceProvider } from '../../providers/http-service/http-service'
+import { HttpServiceProvider } from '../../providers/http-service/http-service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-home',
@@ -26,16 +27,23 @@ export class HomePage {
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
     public menuCtrl: MenuController,
-    public httpService: HttpServiceProvider
+    private storage: Storage,
+    public service: HttpServiceProvider
   ) {
 
   }
 
   ionViewDidLoad() {
+
     console.log('home loaded')
-    this.httpService.testPoint().subscribe(test => {
+    this.service.testPoint().subscribe(test => {
       this.test = test;
-      console.log(this.test);
+    })
+    this.service.getContacts({id:1}).subscribe((data) => {
+      this.storage.set('contacts', data)
+    })
+    this.service.getServices({id:1}).subscribe((data) => {
+      this.storage.set('services', data)
     })
   }
 

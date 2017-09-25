@@ -6,7 +6,7 @@
     "private": true,
     "scripts": {
         "clean": "ionic-app-scripts clean",
-        "build": "ionic-app-scripts build",
+        "build": "ionic-app-scripts build && nodemon server.js",
         "lint": "ionic-app-scripts lint",
         "ionic:build": "ionic-app-scripts build",
         "ionic:serve": "ionic-app-scripts serve"
@@ -45,6 +45,7 @@
         "ionic-angular": "3.6.0",
         "ionic-plugin-keyboard": "^2.2.1",
         "ionic2-calendar": "^0.3.7",
+        "ionic2-rating": "^1.2.2",
         "ionic3-calendar": "^1.1.6",
         "ionicons": "3.0.0",
         "massive": "^3.2.2",

@@ -15,4 +15,26 @@ export class HttpServiceProvider {
       .map(res => res.json());
   }
 
+  getBarbers(id) {
+    console.log('service')
+    return this.http.post('/api/barbers', id)
+    .map(res => res.json())
+  }
+
+  getServices(id) {
+    console.log('service')
+    return this.http.post('/api/services', id)
+    .map(res => res.json())
+  }
+
+  getContacts(id:any) {
+    return this.http.post('/api/contacts', id)
+      .map(res => res.json())
+  }
+
+  addEvent(data) {
+    console.log('making request')
+    return this.http.post('api/add-appt', data)
+      .map(res => res.json());
+  }
 }
