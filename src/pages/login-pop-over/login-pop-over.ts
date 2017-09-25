@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { TabsPage } from '../tabs/tabs'
+import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
+import { TabsPage } from '../tabs/tabs';
+import { HttpServiceProvider } from '../../providers/http-service/http-service';
 
 
 @IonicPage()
@@ -18,9 +19,11 @@ export class LoginPopOverPage {
   }
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    public service: HttpServiceProvider,
+    public alertCtrl: AlertController
   ) {
 
   }
@@ -29,8 +32,31 @@ export class LoginPopOverPage {
     this.viewCtrl.dismiss()
   }
 
+  signUp() {
+    this.service.addUser(this.userData).subscribe((data) => {
+      if (!data.fail) {
+        alert(data.pass);
+        this.viewCtrl.dismiss(this.userData);
+      } else {
+        this.alertCtrl.create({
+          title: data.fail,
+          buttons: ['OK']
+        }).present()
+      }
+    })
+  }
+
   login(){
-    this.viewCtrl.dismiss(this.userData)
+    this.service.login(this.userData).subscribe((data) => {
+      if (data.length === 1) {
+        this.viewCtrl.dismiss(data);
+      } else {
+        this.alertCtrl.create({
+          title: "Username or password is invalid!",
+          buttons: ['OK']
+        }).present()
+      }
+    })
   }
 
   ionViewDidLoad() {

@@ -14,11 +14,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApptStartPage } from '../pages/appt-start/appt-start';
 import { EditApptModalPage } from '../pages/edit-appt-modal/edit-appt-modal';
 import { AuthService } from '../providers/authservice/authservice';
+import { HttpServiceProvider } from '../providers/http-service/http-service';
 import { TimerPage } from '../pages/timer/timer';
 import { TimerComponent } from '../components/timer/timer';
 import { ApptSurveyPage } from '../pages/appt-survey/appt-survey';
 import { Ionic2RatingModule } from 'ionic2-rating';
+import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
 import { LoginPopOverPage } from '../pages/login-pop-over/login-pop-over'
+
 
 @NgModule({
   declarations: [
@@ -40,6 +44,8 @@ import { LoginPopOverPage } from '../pages/login-pop-over/login-pop-over'
     NgCalendarModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
+    HttpModule,
     Ionic2RatingModule
   ],
   bootstrap: [IonicApp],
@@ -61,7 +67,8 @@ import { LoginPopOverPage } from '../pages/login-pop-over/login-pop-over'
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthService
+    AuthService,
+    HttpServiceProvider
   ]
 })
 export class AppModule {}

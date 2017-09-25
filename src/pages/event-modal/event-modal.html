@@ -13,22 +13,14 @@
     <ion-item>
       <ion-label>Client Infomation</ion-label>
       <ion-select interface="popover" [(ngModel)]="event.title">
-        <ion-option value="Dave">Dave</ion-option>
-        <ion-option value="Jim">Jim</ion-option>
-        <ion-option value="John">John</ion-option>
-        <ion-option value="Larry">Larry</ion-option>
-        <ion-option value="Bob">Bob</ion-option>
+        <ion-option *ngFor='let contact of contacts' [value]='contact.c_id'>{{contact.c_first}} {{contact.c_last}}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Type of Cut</ion-label>
       <ion-select interface="popover" [(ngModel)]="event.notes">
-        <ion-option value="Haircut">Haircut</ion-option>
-        <ion-option value="Beard trim">Beard trim</ion-option>
-        <ion-option value="Line Up">Line Up</ion-option>
-        <ion-option value="Fade">Fade</ion-option>
-        <ion-option value="Traditional Shave">Traditional Shave</ion-option>
+        <ion-option *ngFor='let service of services' [value]="service.v_id">{{service.service}}</ion-option>
       </ion-select>
     </ion-item>
 
