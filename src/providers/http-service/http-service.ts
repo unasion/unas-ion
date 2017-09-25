@@ -32,8 +32,26 @@ export class HttpServiceProvider {
       .map(res => res.json())
   }
 
+  addUser(data) {
+    console.log('adding user', data)
+    return this.http.post('/api/add-user', data)
+      .map(res => res.json())
+  }
+
+  login(data) {
+    console.log('logging in', data)
+    return this.http.post('/api/login', data)
+      .map(res => res.json())
+  }
+
+  getAppts(id) {
+    console.log('service',id)
+    return this.http.post('/api/appts', id)
+      .map(res => res.json())
+  }
+
   addEvent(data) {
-    console.log('making request')
+    console.log('adding appt')
     return this.http.post('api/add-appt', data)
       .map(res => res.json());
   }

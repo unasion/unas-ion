@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, AlertController, MenuController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, AlertController, MenuController } from 'ionic-angular';
 import * as moment from 'moment'
 import { EventModalPage } from '../event-modal/event-modal';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
@@ -10,8 +10,8 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  test: any;
 
+  user:any;
   home = HomePage;
   eventSource = [];
   viewTitle: string;
@@ -28,7 +28,8 @@ export class HomePage {
     private alertCtrl: AlertController,
     public menuCtrl: MenuController,
     private storage: Storage,
-    public service: HttpServiceProvider
+    public service: HttpServiceProvider,
+    public navParams: NavParams
   ) {
 
   }
@@ -36,14 +37,26 @@ export class HomePage {
   ionViewDidLoad() {
 
     console.log('home loaded')
-    this.service.testPoint().subscribe(test => {
-      this.test = test;
-    })
     this.service.getContacts({id:1}).subscribe((data) => {
       this.storage.set('contacts', data)
     })
     this.service.getServices({id:1}).subscribe((data) => {
       this.storage.set('services', data)
+    })
+    this.storage.get('user').then((user)=> {
+      console.log(user, user.id)
+      this.service.getAppts({id:user.id}).subscribe((data)=> {
+        let events = []
+        data.map((x)=> {
+          events.push({
+            title: x.c_first,
+            notes: x.service,
+            startTime : x.start_time,
+            endTime : x.end_time
+          })
+        })
+        this.eventSource = events
+      })
     })
   }
 

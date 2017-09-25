@@ -58,6 +58,35 @@ massive("postgres://uunjpeyj:yVNsIpBpaTMB_a2TXEss-Gmq1DGSIOte@pellefant.db.eleph
       }).then(contacts => res.send(contacts))
     })
 
+    app.post('/api/add-user', (req, res) => {
+      newUser = [
+        req.body.firstName,
+        req.body.lastName,
+        req.body.userName,
+        req.body.password,
+        'barber'
+      ]
+      db.add_user(newUser, (err, users) => {
+        console.log(err)})
+        .then((users) => {res.send({pass: "Success"})},
+              (error) => {res.send({fail:'That email address is already in use!'})
+      })
+    })
+
+    app.post('/api/login', (req, res)=> {
+      credentials = [req.body.userName, req.body.password]
+      db.login(credentials, (err, user)=> {
+        console.log(err);
+      }).then((user) => {res.send(user)})
+    })
+
+    app.post('/api/appts', (req, res)=> {
+      console.log(req.body);
+      db.get_appts(req.body.id, (err, appts)=>{
+        console.log(err, appts);
+      }).then((appts)=> res.send(appts))
+    })
+
 });
 
 const server = http.createServer(app);

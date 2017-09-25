@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, PopoverController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs'
 import { AuthService } from '../../providers/authservice/authservice'
-import { LoginPopOverPage } from '../login-pop-over/login-pop-over'
+import { LoginPopOverPage } from '../login-pop-over/login-pop-over';
+import { HttpServiceProvider } from '../../providers/http-service/http-service';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -10,12 +12,14 @@ import { LoginPopOverPage } from '../login-pop-over/login-pop-over'
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
+test:any = "hello"
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
     public auth: AuthService,
-    public popoverCtrl: PopoverController
+    public popoverCtrl: PopoverController,
+    public service: HttpServiceProvider,
+    private storage: Storage,
   ) {
 
   }
@@ -26,12 +30,12 @@ export class LoginPage {
       popover.present();
 
       popover.onDidDismiss(data =>{
-        console.log('data from popup', data);
-        if(data){
-          this.navCtrl.push(TabsPage)
-        }
+        console.log('data from popup', data[0].id);
+        this.storage.set('user', data[0]);
+        this.navCtrl.push(TabsPage, data[0].id)
       })
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
