@@ -14,7 +14,7 @@ export class HttpServiceProvider {
 
   constructor(
     public http: Http,
-    private store: Storage
+    store: Storage
   ) {
     store.get('user').then((x)=> {
       this.user_id = x.b_id

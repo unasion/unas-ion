@@ -54,13 +54,26 @@ export class HomePage {
         let events = []
         data.map((x)=> {
 
+          let first = x.start_time.split('T')[0]
+          let last = x.start_time.split('T')[1].replace('T','')
+          let year = first.split('-')[0]
+          let month = first.split('-')[1]
+          let day = first.split('-')[2]
+          let hour = last.split(':')[0]
+          let min = last.split(':')[1].replace(':','')
+          let d = new Date()
+          d.setFullYear(year,month-1,day);
+          d.setHours(hour)
+          d.setMinutes(min)
+
           events.push({
             title: x.c_first,
             notes: x.service,
-            startTime : new Date(x.start_time),
-            endTime : new Date(x.end_time)
+            startTime : d,
+            endTime : d
             // Fri Sep 29 2017 07:47:33 GMT-0600 (MDT)
           })
+          
         })
         this.eventSource = events
       })

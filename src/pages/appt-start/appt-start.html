@@ -7,11 +7,11 @@
 
 <ion-content>
   <ion-card>
-    <div>
-      <div> {{ event?.Title }} </div>
-      <div> <p> {{ event?.Notes }} </p> </div>
-    </div>
-    <p>Start: {{ event?.startTime }}</p>
+    <ion-list>
+      <ion-item> <p>Client: </p> {{ event?.Title }} </ion-item>
+      <ion-item> <p>Type: </p> {{ event?.Notes }} </ion-item>
+      <ion-item> <p>Start: </p> {{ event?.startTime }}</ion-item>
+    </ion-list>
   </ion-card>
   <button color='secondary' ion-button full icon-left (click)='timerModal()'>
     <ion-icon name='ios-timer-outline'></ion-icon>Start Appointment
