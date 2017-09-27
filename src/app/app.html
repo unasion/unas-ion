@@ -2,10 +2,13 @@
   <ion-content class="side-profile">
     <ion-icon name="ios-contact" class="side-nav-icon"></ion-icon>
     <ion-list>
-      <button ion-item class="menu-item">
-        <ion-icon name="ios-person-outline" class="menu-icon"></ion-icon>
-        Profile
-      </button>
+      <ion-item>
+        <ion-label *ngIf="show">
+          <ion-icon name="ios-clock-outline" class="menu-icon"></ion-icon>Clock-In</ion-label>
+        <ion-label *ngIf="!show">
+          <ion-icon name="ios-clock-outline" class="menu-icon"></ion-icon>Clock-Out</ion-label>
+        <ion-toggle checked="false" [(ngModel)]="clockIn" (ionChange)="timeStamp()"></ion-toggle>
+      </ion-item>
       <button ion-item class="menu-item">
         <ion-icon name="ios-notifications-outline" class="menu-icon"></ion-icon>
         Notifications

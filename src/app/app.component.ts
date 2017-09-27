@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login'
 import Auth0Cordova from '@auth0/cordova';
 import { TabsPage } from '../pages/tabs/tabs';
-
+import { FormsModule } from '@angular/forms';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,6 +13,12 @@ import { TabsPage } from '../pages/tabs/tabs';
 export class MyApp {
   rootPage:any = LoginPage
   secondPage: any = TabsPage
+  show: boolean = true;
+  public time: any;
+  public timeIn : any;
+  public timeOut : any;
+  clockIn : boolean;
+
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -26,5 +32,22 @@ export class MyApp {
       };
 
     });
+
+    this.time = {
+      timeIn : false,
+      timeOut : false
+    }
+  }
+
+  timeStamp(){
+    if(this.clockIn) {
+      this.timeIn = new Date();
+    }
+    else if(!this.clockIn) {
+      this.timeOut = new Date();
+    }
+    this.show = !this.show
+    console.log('clock in:',this.timeIn)
+    console.log('clock out:',this.timeOut)
   }
 }
