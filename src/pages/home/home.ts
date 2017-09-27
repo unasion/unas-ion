@@ -44,21 +44,28 @@ export class HomePage {
       this.storage.set('services', data)
     })
     this.storage.get('user').then((user)=> {
-      console.log(user, user.id)
-      this.service.getAppts({id:user.id}).subscribe((data)=> {
+      console.log(user)
+      this.service.getAppts({id:user.b_id}).subscribe((data)=> {
+        console.log('-- appts from DB --',data);
+        console.log('new date', new Date(data[0].start_time) )
+        console.log('new date', moment(data[0].start_time).hour(4).minute(48).format('ddd MMM D YYYY hh:mm:ss zz') )
+        // 2017-10-02T09:05:52.000Z
+        
         let events = []
         data.map((x)=> {
+
           events.push({
             title: x.c_first,
             notes: x.service,
-            startTime : x.start_time,
-            endTime : x.end_time
+            startTime : new Date(x.start_time),
+            endTime : new Date(x.end_time)
+            // Fri Sep 29 2017 07:47:33 GMT-0600 (MDT)
           })
         })
         this.eventSource = events
       })
     })
-  }
+  } 
 
   addEvent(){
     let modal = this.modalCtrl.create(EventModalPage, {selectedDay: this.selectedDay})
@@ -66,7 +73,7 @@ export class HomePage {
 
     modal.onDidDismiss(data =>{
       if(data){
-        console.log(data);
+        console.log('-- modal data --',data);
         let eventData = data;
 
         eventData.startTime = new Date(data.startTime)
@@ -78,7 +85,8 @@ export class HomePage {
         setTimeout(()=>{
           this.eventSource = events
         })
-
+        console.log('this.eventSource',this.eventSource);
+      
       }
     })
   }

@@ -13,14 +13,14 @@
     <ion-item>
       <ion-label>Client Infomation</ion-label>
       <ion-select interface="popover" [(ngModel)]="event.title">
-        <ion-option *ngFor='let contact of contacts' [value]='contact.c_id'>{{contact.c_first}} {{contact.c_last}}</ion-option>
+        <ion-option *ngFor='let contact of contacts' [value]='contact.c_first+" "+contact.c_last'>{{contact.c_first}} {{contact.c_last}}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Type of Cut</ion-label>
       <ion-select interface="popover" [(ngModel)]="event.notes">
-        <ion-option *ngFor='let service of services' [value]="service.v_id">{{service.service}}</ion-option>
+        <ion-option *ngFor='let service of services' [value]="service.service">{{service.service}}</ion-option>
       </ion-select>
     </ion-item>
 

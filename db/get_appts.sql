@@ -8,8 +8,7 @@ from
 	appointments,
 	barbers,
 	clients,
-	services,
-	users
+	services
 where
 	barber_id = barbers.b_id
 and
@@ -17,8 +16,7 @@ and
 and
 	service_id = services.v_id
 and
-	barbers.b_id = users.id
-and
-	users.id = $1
+	barbers.b_id = $1
 and
 	status like 'scheduled'
+ 

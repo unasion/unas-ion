@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
-import { TabsPage } from '../tabs/tabs';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 
 
@@ -15,7 +14,8 @@ export class LoginPopOverPage {
     'firstName': '',
     'lastName': '',
     'userName': '',
-    'password': ''
+    'password': '',
+    'phonenumber': ''
   }
 
   constructor(
@@ -33,10 +33,9 @@ export class LoginPopOverPage {
   }
 
   signUp() {
-    this.service.addUser(this.userData).subscribe((data) => {
+    this.service.addBarber(this.userData).subscribe((data) => {
       if (!data.fail) {
-        alert(data.pass);
-        this.viewCtrl.dismiss(this.userData);
+        this.viewCtrl.dismiss(data);
       } else {
         this.alertCtrl.create({
           title: data.fail,
