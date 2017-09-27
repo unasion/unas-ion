@@ -68,6 +68,18 @@ export class HttpServiceProvider {
       .map(res => res.json())
   }
 
+  cancelAppt(ids){
+    console.log('-- ids in service to delete --',ids);
+    return this.http.post('/api/appts/delete', ids)
+      .map(res => res.json())
+  }
+
+  editAppt(data){
+    console.log('-- edit appt in service --',data);
+    return this.http.post('/api/appts/edit',data)
+      .map(res => res.json())
+  }
+
   addEvent(data) {
     let v_id = 0
     let c_id = 0

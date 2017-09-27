@@ -34,7 +34,7 @@ export class HomePage {
 
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
 
     console.log('home loaded')
     this.service.getContacts({id:1}).subscribe((data) => {
@@ -46,11 +46,6 @@ export class HomePage {
     this.storage.get('user').then((user)=> {
       console.log(user)
       this.service.getAppts({id:user.b_id}).subscribe((data)=> {
-        console.log('-- appts from DB --',data);
-        console.log('new date', new Date(data[0].start_time) )
-        console.log('new date', moment(data[0].start_time).hour(4).minute(48).format('ddd MMM D YYYY hh:mm:ss zz') )
-        // 2017-10-02T09:05:52.000Z
-        
         let events = []
         data.map((x)=> {
 
@@ -65,13 +60,13 @@ export class HomePage {
           d.setFullYear(year,month-1,day);
           d.setHours(hour)
           d.setMinutes(min)
-
+          
           events.push({
+            a_id: x.a_id,
             title: x.c_first,
             notes: x.service,
             startTime : d,
             endTime : d
-            // Fri Sep 29 2017 07:47:33 GMT-0600 (MDT)
           })
           
         })
