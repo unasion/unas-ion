@@ -52,24 +52,39 @@ massive("postgres://uunjpeyj:yVNsIpBpaTMB_a2TXEss-Gmq1DGSIOte@pellefant.db.eleph
     })
 
     app.post('/api/add-appt', (req, res) => {
-      console.log(req.body);
-      db.add_appt(req.body.id, (err, contacts)=> {
-        console.log(err);
-      }).then(contacts => res.send(contacts))
-    })
+      let newappt = [
+        req.body.b_id,
+        req.body.c_id,
+        req.body.v_id,
+        req.body.shop_id,
+        req.body.start_time,
+        req.body.end_time
+      ]
+      console.log('-- appt added server --',newappt)
+      db.add_appt(newappt, (err, info)=> {
+        console.log('-- appt added server --',err,info);
+      }).then(info => res.send(info))
+    })  
 
-    app.post('/api/add-user', (req, res) => {
+    app.post('/api/add-barber', (req, res) => {
+      // first_name, last_name, email, password, color, phonenumber, shop_id
       newUser = [
         req.body.firstName,
         req.body.lastName,
         req.body.userName,
         req.body.password,
-        'barber'
+        'grey',
+        req.body.phonenumber,
+        1
       ]
-      db.add_user(newUser, (err, users) => {
-        console.log(err)})
-        .then((users) => {res.send({pass: "Success"})},
-              (error) => {res.send({fail:'That email address is already in use!'})
+      // console.log('-- new barber created --', newUser)
+      db.add_barber(newUser, (err, users) => {
+        console.log('back from db -->>',err,users)})
+        .then((users) => {
+          console.log('-- barber from DB --',users)
+          res.send(users)
+        },
+        (error) => {res.send({fail:'That email address is already in use!'})
       })
     })
 
@@ -81,10 +96,13 @@ massive("postgres://uunjpeyj:yVNsIpBpaTMB_a2TXEss-Gmq1DGSIOte@pellefant.db.eleph
     })
 
     app.post('/api/appts', (req, res)=> {
-      console.log(req.body);
+      console.log('-- bod cuming in --',req.body);
       db.get_appts(req.body.id, (err, appts)=>{
         console.log(err, appts);
-      }).then((appts)=> res.send(appts))
+      }).then((appts)=> {
+        console.log(' -- appts from DB -- ',appts)
+        res.send(appts)
+      })
     })
 
 });

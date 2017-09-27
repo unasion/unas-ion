@@ -69,6 +69,7 @@
     <ion-card-header text-left color='primary'>{{ viewTitle }}</ion-card-header>
     <ion-card-content>
     <calendar
+      [monthviewEventDetailTemplate]='template'
       [eventSource]='eventSource'
       [calendarMode]='calendar.mode'
       [currentDate]='calendar.currentDate'

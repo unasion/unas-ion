@@ -44,21 +44,41 @@ export class HomePage {
       this.storage.set('services', data)
     })
     this.storage.get('user').then((user)=> {
-      console.log(user, user.id)
-      this.service.getAppts({id:user.id}).subscribe((data)=> {
+      console.log(user)
+      this.service.getAppts({id:user.b_id}).subscribe((data)=> {
+        console.log('-- appts from DB --',data);
+        console.log('new date', new Date(data[0].start_time) )
+        console.log('new date', moment(data[0].start_time).hour(4).minute(48).format('ddd MMM D YYYY hh:mm:ss zz') )
+        // 2017-10-02T09:05:52.000Z
+        
         let events = []
         data.map((x)=> {
+
+          let first = x.start_time.split('T')[0]
+          let last = x.start_time.split('T')[1].replace('T','')
+          let year = first.split('-')[0]
+          let month = first.split('-')[1]
+          let day = first.split('-')[2]
+          let hour = last.split(':')[0]
+          let min = last.split(':')[1].replace(':','')
+          let d = new Date()
+          d.setFullYear(year,month-1,day);
+          d.setHours(hour)
+          d.setMinutes(min)
+
           events.push({
             title: x.c_first,
             notes: x.service,
-            startTime : x.start_time,
-            endTime : x.end_time
+            startTime : d,
+            endTime : d
+            // Fri Sep 29 2017 07:47:33 GMT-0600 (MDT)
           })
+          
         })
         this.eventSource = events
       })
     })
-  }
+  } 
 
   addEvent(){
     let modal = this.modalCtrl.create(EventModalPage, {selectedDay: this.selectedDay})
@@ -66,7 +86,7 @@ export class HomePage {
 
     modal.onDidDismiss(data =>{
       if(data){
-        console.log(data);
+        console.log('-- modal data --',data);
         let eventData = data;
 
         eventData.startTime = new Date(data.startTime)
@@ -78,7 +98,8 @@ export class HomePage {
         setTimeout(()=>{
           this.eventSource = events
         })
-
+        console.log('this.eventSource',this.eventSource);
+      
       }
     })
   }

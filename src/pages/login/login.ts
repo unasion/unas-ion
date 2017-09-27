@@ -30,9 +30,9 @@ test:any = "hello"
       popover.present();
 
       popover.onDidDismiss(data =>{
-        console.log('data from popup', data[0].id);
+        console.log('data from popup', data[0].b_id);
         this.storage.set('user', data[0]);
-        this.navCtrl.push(TabsPage, data[0].id)
+        this.navCtrl.push(TabsPage, data[0].b_id)
       })
   }
 

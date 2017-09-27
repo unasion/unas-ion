@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login'
 import Auth0Cordova from '@auth0/cordova';
 import { TabsPage } from '../pages/tabs/tabs';
-import { FormsModule } from '@angular/forms';
+import { Storage } from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,9 +18,15 @@ export class MyApp {
   public timeIn : any;
   public timeOut : any;
   clockIn : boolean;
+  profile: any;
 
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(
+    platform: Platform, 
+    statusBar: StatusBar, 
+    splashScreen: SplashScreen,
+    storage: Storage
+  ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -37,6 +43,9 @@ export class MyApp {
       timeIn : false,
       timeOut : false
     }
+    storage.get('user').then((user)=> {
+      this.profile = user
+    })
   }
 
   timeStamp(){

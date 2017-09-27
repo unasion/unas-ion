@@ -45,11 +45,11 @@ export class EventModalPage {
     })
 
   }
-
-  save(){
+  
+  save(){    
     this.viewCtrl.dismiss(this.event);
-    this.service.addEvent(this.event);
-    console.log('event saved', this.event)
+    this.service.addEvent(this.event).subscribe()
+    console.log('-- event saved in Modal --', this.event)
   }
 
   cancel(){
