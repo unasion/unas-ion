@@ -115,7 +115,6 @@ massive("postgres://uunjpeyj:yVNsIpBpaTMB_a2TXEss-Gmq1DGSIOte@pellefant.db.eleph
           console.log(error)
           res.send({fail:'That email address is already in use!'})
       })
-      */
     })
 
     app.post('/api/login', (req, res)=> {

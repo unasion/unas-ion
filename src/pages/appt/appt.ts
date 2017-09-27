@@ -111,7 +111,13 @@ export class ApptPage {
           if(this.current[y].a_id == editcAppt.a_id){
             console.log('after >>>>>', editcAppt.startTime);
             console.log('editcAppt',editcAppt);
-            this.current[y] = editcAppt
+            this.current[y] = {
+              'a_id': editcAppt.a_id,
+              'title': editcAppt.title,
+              'notes': editcAppt.notes,
+              'startTime' : moment(editcAppt.startTime).format('LLLL').toString(),
+              'endTime' : moment(editcAppt.startTime).format('LLLL').toString()
+            }
           }
         }
         let events = this.eventSource

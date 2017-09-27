@@ -54,6 +54,14 @@ export class MyApp {
     })
   }
 
+  logout(){
+    console.log('-- we logging out ---');
+    // this.storage.clear()
+  }
+
+  // timeStamp(){
+  //   if(this.clockIn) {
+  //     this.timeIn = new Date();
   timeStamp() {
     if (this.clockIn) {
       this.timecard.timeIn = moment(new Date()).format('YYYY-MM-DD HH:mm:ss z');
