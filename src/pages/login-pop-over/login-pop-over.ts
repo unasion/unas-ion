@@ -33,6 +33,7 @@ export class LoginPopOverPage {
   }
 
   signUp() {
+    console.log('-- this.userData --', this.userData)
     this.service.addBarber(this.userData).subscribe((data) => {
       if (!data.fail) {
         this.viewCtrl.dismiss(data);
