@@ -50,7 +50,7 @@ export class MyApp {
 
   logout(){
     console.log('-- we logging out ---');
-    this.storage.clear()
+    // this.storage.clear()
   }
 
   timeStamp(){
