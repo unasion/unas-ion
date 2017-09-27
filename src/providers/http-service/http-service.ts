@@ -26,7 +26,7 @@ export class HttpServiceProvider {
       this.services = x
     })
   }
-  
+
 
   testPoint() {
     return this.http.get('/api/test')
@@ -51,8 +51,14 @@ export class HttpServiceProvider {
   }
 
   addBarber(data) {
-    console.log('adding user', data)
+    console.log('-- adding user in service --', data)
     return this.http.post('/api/add-barber', data)
+      .map(res => res.json())
+  }
+
+  postTimecards(data) {
+    console.log('-- adding timecards to service --', data)
+    return this.http.post('/api/post-timecards', data)
       .map(res => res.json())
   }
 
@@ -83,7 +89,7 @@ export class HttpServiceProvider {
       if(data.notes == x.service){
         console.log('x.v_id',x.v_id);
         v_id = x.v_id
-        return 
+        return
       }
     })
     let event = {
@@ -95,7 +101,7 @@ export class HttpServiceProvider {
       'end_time': moment(new Date(data.endTime)).format('YYYY-MM-DD HH:mm:ss z')
     }
     console.log('-- event going to DB --',event);
-    
+
     return this.http.post('/api/add-appt', event)
       .map(res => res.json());
   }
