@@ -8,8 +8,8 @@
 <ion-content>
   <ion-card>
     <ion-list>
-      <ion-item> <p>Client: </p> {{ event?.Title }} </ion-item>
-      <ion-item> <p>Type: </p> {{ event?.Notes }} </ion-item>
+      <ion-item> <p>Client: </p> {{ event?.title }} </ion-item>
+      <ion-item> <p>Type: </p> {{ event?.notes }} </ion-item>
       <ion-item> <p>Start: </p> {{ event?.startTime }}</ion-item>
     </ion-list>
   </ion-card>
@@ -19,10 +19,10 @@
   <button color='light' ion-button full icon-left (click)='editApptModal()'>
     <ion-icon name='ios-create-outline'></ion-icon>Edit Appointment
   </button>
-  <button color='light' ion-button full icon-left>
+  <button color='light' ion-button full icon-left (click)='cancelAppt()' >
     <ion-icon name='ios-trash-outline'></ion-icon>Cancel Appointment
   </button>
-  <button color='light' ion-button full icon-left (click)='cancel()'>
+  <button color='light' ion-button full icon-left (click)='back()'>
     <ion-icon name='ios-arrow-round-back-outline'></ion-icon>Back to Appointments
   </button>
 </ion-content>

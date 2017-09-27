@@ -10,40 +10,32 @@
 
     <ion-item>
       <ion-label>Client Infomation</ion-label>
-      <ion-select interface="popover">
-        <ion-option value="Dave">Dave</ion-option>
-        <ion-option value="Jim">Jim</ion-option>
-        <ion-option value="John">John</ion-option>
-        <ion-option value="Larry">Larry</ion-option>
-        <ion-option value="Bob">Bob</ion-option>
+      <ion-select interface="popover" [(ngModel)]="event.title">
+          <ion-option *ngFor='let contact of contacts' [value]='contact.c_first'>{{contact.c_first}} {{contact.c_last}}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Type of Cut</ion-label>
-      <ion-select interface="popover">
-        <ion-option value="Haircut">Haircut</ion-option>
-        <ion-option value="Beard trim">Beard trim</ion-option>
-        <ion-option value="Line Up">Line Up</ion-option>
-        <ion-option value="Fade">Fade</ion-option>
-        <ion-option value="Traditional Shave">Traditional Shave</ion-option>
+      <ion-select interface="popover" [(ngModel)]="event.notes">
+          <ion-option *ngFor='let service of services' [value]="service.service">{{service.service}}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
-      <ion-label>Start</ion-label>
-      <ion-datetime displayFormat='MM/DD/YYYY hh:mm a' pickFormat='MM/DD/YYYY' [min]='minDate' ></ion-datetime>
+        <ion-label>Start</ion-label>
+        <ion-datetime displayFormat='MM/DD/YYYY hh:mm a' pickFormat='MM/DD/YYYY' [(ngModel)]='event.startTime' [min]='minDate' ></ion-datetime>
     </ion-item>
-
+  
     <ion-item>
       <ion-label>End</ion-label>
-      <ion-datetime displayFormat='MM/DD/YYYY hh:mm a' pickFormat='MM/DD/YYYY' [min]='minDate' ></ion-datetime>
+      <ion-datetime displayFormat='MM/DD/YYYY hh:mm a' pickFormat='MM/DD/YYYY' [(ngModel)]='event.endTime' [min]='minDate' ></ion-datetime>
     </ion-item>
 
   </ion-list>
 
   <button color='secondary' ion-button full icon-left (click)='save()' >
-    <ion-icon name='checkmark' ></ion-icon> Add event
+    <ion-icon name='checkmark' ></ion-icon> Save event
   </button>
   <button color='light' ion-button full (click)='cancel()' >Cancel
   </button>

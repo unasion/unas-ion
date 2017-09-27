@@ -65,6 +65,31 @@ massive("postgres://uunjpeyj:yVNsIpBpaTMB_a2TXEss-Gmq1DGSIOte@pellefant.db.eleph
         console.log('-- appt added server --',err,info);
       }).then(info => res.send(info))
     })
+    
+    app.post('/api/appts/delete', (req, res) => {
+      let delappt = [
+        req.body.a_id,
+        req.body.shop_id
+      ]
+      db.delete_appt(delappt, (err, info)=> {
+      }).then(info => res.send(info))
+    })
+
+    app.post('/api/appts/edit',(req,res) => {
+      console.log('--editing appts--',req.body)
+      let array = [
+        req.body.a_id,
+        req.body.b_id,
+        req.body.c_id,
+        req.body.v_id,
+        req.body.shop_id,
+        req.body.start_time,
+        req.body.end_time
+      ]
+      db.edit_appt(array, (err, info) => {
+        console.log('db', err, info)
+      }).then(info => res.send(info))
+    })
 
     app.post('/api/add-barber', (req, res) => {
       // first_name, last_name, email, password, color, phonenumber, shop_id
@@ -79,17 +104,15 @@ massive("postgres://uunjpeyj:yVNsIpBpaTMB_a2TXEss-Gmq1DGSIOte@pellefant.db.eleph
         '$15/hr',
         'hourly'
       ]
-
       console.log('-- new barber created --', newUser)
       db.add_barber(newUser, (err, users) => {
         console.log('back from db -->>',err,users)})
         .then((users) => {
           console.log('-- barber from DB --',users)
           res.send(users)
-        })
-        /*
+        },
         (error) => {
-          console.log('--error-->>',error);
+          console.log(error)
           res.send({fail:'That email address is already in use!'})
       })
       */
