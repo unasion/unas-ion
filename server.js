@@ -88,7 +88,7 @@ massive("postgres://uunjpeyj:yVNsIpBpaTMB_a2TXEss-Gmq1DGSIOte@pellefant.db.eleph
       ]
       db.edit_appt(array, (err, info) => {
         console.log('db', err, info)
-      }).then(info => res.send(info)) 
+      }).then(info => res.send(info))
     })
 
     app.post('/api/add-barber', (req, res) => {
@@ -115,6 +115,7 @@ massive("postgres://uunjpeyj:yVNsIpBpaTMB_a2TXEss-Gmq1DGSIOte@pellefant.db.eleph
           console.log(error)
           res.send({fail:'That email address is already in use!'})
       })
+      */
     })
 
     app.post('/api/login', (req, res)=> {
@@ -132,6 +133,21 @@ massive("postgres://uunjpeyj:yVNsIpBpaTMB_a2TXEss-Gmq1DGSIOte@pellefant.db.eleph
         console.log(' -- appts from DB -- ',appts)
         res.send(appts)
       })
+    })
+
+    app.post('/api/post-timecards', (req, res)=> {
+      console.log('here is the timecards', req.body);
+
+      let newTimecard = [
+        req.body.barberId,
+        req.body.timeIn,
+        req.body.timeOut,
+        req.body.shopId
+      ]
+
+      db.post_timecards(newTimecard, (err, info)=> {
+        console.log('-- timecard added to server --',err,info);
+      }).then(info => res.send(info))
     })
 
 });
