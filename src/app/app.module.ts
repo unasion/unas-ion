@@ -21,7 +21,8 @@ import { ApptSurveyPage } from '../pages/appt-survey/appt-survey';
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
-import { LoginPopOverPage } from '../pages/login-pop-over/login-pop-over'
+import { LoginPopOverPage } from '../pages/login-pop-over/login-pop-over';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { LoginPopOverPage } from '../pages/login-pop-over/login-pop-over'
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     HttpModule,
-    Ionic2RatingModule
+    Ionic2RatingModule,
+    FormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
