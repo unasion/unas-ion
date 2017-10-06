@@ -30,7 +30,7 @@ export class MyApp {
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    storage: Storage,
+    private storage: Storage,
     public service: HttpServiceProvider
   ) {
     platform.ready().then(() => {
@@ -45,23 +45,20 @@ export class MyApp {
 
     });
 
-    // this.time = {
-    //   timeIn : false,
-    //   timeOut : false
-    // }
+
     storage.get('user').then((user) => {
-      this.profile = user
+      if(user){
+        this.profile = user
+      }
     })
   }
 
   logout(){
     console.log('-- we logging out ---');
-    // this.storage.clear()
+    this.storage.remove('user')
+
   }
 
-  // timeStamp(){
-  //   if(this.clockIn) {
-  //     this.timeIn = new Date();
   timeStamp() {
     if (this.clockIn) {
       this.timecard.timeIn = moment(new Date()).format('YYYY-MM-DD HH:mm:ss z');

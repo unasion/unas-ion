@@ -48,7 +48,8 @@ export class LoginPopOverPage {
 
   login(){
     this.service.login(this.userData).subscribe((data) => {
-      if (data.length === 1) {
+      console.log('login model 😡',data);
+      if (data[0].b_id) {
         this.viewCtrl.dismiss(data);
       } else {
         this.alertCtrl.create({
