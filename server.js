@@ -32,8 +32,11 @@ massive("postgres://uunjpeyj:yVNsIpBpaTMB_a2TXEss-Gmq1DGSIOte@pellefant.db.eleph
     const db = app.get('db');
 
     app.get('/api/test', (req,res) => {
+      console.log('-- test success ---')
       db.test_end((err, users) => {
-      }).then(users => res.send(users))
+      }).then(users => {
+      console.log('-- test success ---')
+        res.send(users)})
     })
 
     app.post('/api/contacts', (req, res) => {
@@ -117,7 +120,7 @@ massive("postgres://uunjpeyj:yVNsIpBpaTMB_a2TXEss-Gmq1DGSIOte@pellefant.db.eleph
       })
     })
 
-    app.post('/api/login', (req, res)=> {
+    app.post('/api/ionic-login', (req, res)=> {
       credentials = [req.body.userName, req.body.password]
       db.login(credentials, (err, user)=> {
         console.log(err);

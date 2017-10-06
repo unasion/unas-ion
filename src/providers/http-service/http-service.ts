@@ -11,78 +11,84 @@ export class HttpServiceProvider {
   user_id: any;
   contacts: any;
   services: any;
+  myIP = 'http://10.0.0.248:4200'
 
   constructor(
     public http: Http,
     store: Storage
   ) {
     store.get('user').then((x)=> {
-      this.user_id = x.b_id
+      if(x){
+        this.user_id = x.b_id
+      }
     })
     store.get('contacts').then((x)=> {
-      this.contacts = x
+      if(x){
+        this.contacts = x
+      }
     })
     store.get('services').then((x)=> {
-      this.services = x
+      if(x){
+        this.services = x
+      }      
     })
   }
 
-
-  testPoint() {
-    return this.http.get('/api/test')
-      .map(res => res.json());
-  }
 
   getBarbers(id) {
     console.log('service')
-    return this.http.post('/api/barbers', id)
+    return this.http.post(`${this.myIP}/api/barbers`, id)
     .map(res => res.json())
   }
 
   getServices(id) {
     console.log('service')
-    return this.http.post('/api/services', id)
+    return this.http.post(`${this.myIP}/api/services`, id)
     .map(res => res.json())
   }
 
   getContacts(id:any) {
-    return this.http.post('/api/contacts', id)
+    return this.http.post(`${this.myIP}/api/contacts`, id)
       .map(res => res.json())
   }
 
   addBarber(data) {
     console.log('-- adding user in service --', data)
-    return this.http.post('/api/add-barber', data)
+    return this.http.post(`${this.myIP}/api/add-barber`, data)
       .map(res => res.json())
   }
 
   postTimecards(data) {
     console.log('-- adding timecards to service --', data)
-    return this.http.post('/api/post-timecards', data)
+    return this.http.post(`${this.myIP}/api/post-timecards`, data)
       .map(res => res.json())
   }
 
   login(data) {
-    console.log('logging in', data)
-    return this.http.post('/api/login', data)
-      .map(res => res.json())
+    return this.http.post(`${this.myIP}/api/ionic-login`, data)
+      .map(res => {
+        return res.json()
+      })
   }
-
+ 
   getAppts(id) {
     console.log('--- hitting service to get appts ---',id)
-    return this.http.post('/api/appts', id)
-      .map(res => res.json())
+    return this.http.post(`${this.myIP}/api/appts`, id)
+      .map(res => {
+        console.log('back from db appts 😤', res.json());
+        return res.json()
+      })
   }
 
   cancelAppt(ids){
     console.log('-- ids in service to delete --',ids);
-    return this.http.post('/api/appts/delete', ids)
+    return this.http.post(`${this.myIP}/api/cal/delete`, ids)
       .map(res => res.json())
   }
 
   editAppt(data){
     console.log('-- edit appt in service --',data);
-    return this.http.post('/api/appts/edit',data)
+    return this.http.post(`${this.myIP}/api/cal/edit`,data)
       .map(res => res.json())
   }
 
@@ -105,16 +111,16 @@ export class HttpServiceProvider {
       }
     })
     let event = {
-      'b_id': Number(this.user_id),
-      'c_id': c_id,
-      'v_id': v_id,
+      'barber_id': Number(this.user_id),
+      'client_id': c_id,
+      'service_id': v_id,
       'shop_id': 1,
       'start_time': moment(new Date(data.startTime)).format('YYYY-MM-DD HH:mm:ss z'),
       'end_time': moment(new Date(data.endTime)).format('YYYY-MM-DD HH:mm:ss z')
     }
     console.log('-- event going to DB --',event);
 
-    return this.http.post('/api/add-appt', event)
+    return this.http.post(`${this.myIP}/api/add-appt`, event)
       .map(res => res.json());
   }
 

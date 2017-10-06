@@ -12,14 +12,13 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-test:any = "hello"
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public auth: AuthService,
     public popoverCtrl: PopoverController,
     public service: HttpServiceProvider,
-    private storage: Storage,
+    private storage: Storage
   ) {
 
   }
@@ -35,6 +34,7 @@ test:any = "hello"
         this.navCtrl.push(TabsPage, data[0].b_id)
       })
   }
+
 
 
   ionViewDidLoad() {

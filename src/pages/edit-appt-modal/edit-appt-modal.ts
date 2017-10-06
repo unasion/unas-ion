@@ -48,10 +48,10 @@ export class EditApptModalPage {
       }
     })
     let edit = {
-      'a_id': this.event.a_id,
-      'b_id': this.user.b_id,
-      'c_id': c_id,
-      'v_id': v_id,
+      'dataID': this.event.a_id,
+      'barber_id': this.user.b_id,
+      'client_id': c_id,
+      'service_id': v_id,
       'shop_id': 1,
       'start_time': moment(this.event.startTime).format('YYYY-MM-DD HH:mm:ss'),
       'end_time': moment(this.event.endTime).format('YYYY-MM-DD HH:mm:ss')

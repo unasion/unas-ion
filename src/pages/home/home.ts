@@ -4,6 +4,7 @@ import * as moment from 'moment'
 import { EventModalPage } from '../event-modal/event-modal';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { Storage } from '@ionic/storage';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'page-home',
@@ -46,6 +47,8 @@ export class HomePage {
     this.storage.get('user').then((user)=> {
       console.log(user)
       this.service.getAppts({id:user.b_id}).subscribe((data)=> {
+        console.log('-- Appts coming from DB --',data);
+        
         let events = []
         data.map((x)=> {
 
