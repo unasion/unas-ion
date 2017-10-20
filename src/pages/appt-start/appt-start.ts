@@ -18,16 +18,15 @@ export class ApptStartPage {
   saved: any;
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    private viewCtrl: ViewController, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private viewCtrl: ViewController,
     private modalCtrl: ModalController,
     public service: HttpServiceProvider,
     private toastCtrl: ToastController
   ) {
     this.saved = this.navParams.get('saved')
     console.log('-- save --',this.saved);
-    
     this.navParams.get('event')
     this.event = this.navParams.get('event')
     console.log('-- this.event --',this.event);
@@ -39,7 +38,7 @@ export class ApptStartPage {
       'shop_id': 1
     }
     console.log('-- canceled appts ids --',ids);
-    
+
     this.service.cancelAppt(ids).subscribe()
     let toast = this.toastCtrl.create({
       message: 'Appointment Delete Successfully',
@@ -73,7 +72,7 @@ export class ApptStartPage {
   }
 
   timerModal() {
-    let modal = this.modalCtrl.create(TimerPage);
+    let modal = this.modalCtrl.create(TimerPage, {event: this.event});
     modal.present();
   }
 

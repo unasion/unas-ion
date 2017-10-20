@@ -1,16 +1,21 @@
 import { Component, Input } from '@angular/core';
+import { NavParams } from 'ionic-angular';
 import { ITimer } from './itimer';
+import { HttpServiceProvider } from '../../providers/http-service/http-service';
 
 @Component({
   selector: 'timer',
   templateUrl: 'timer.html'
 })
 export class TimerComponent {
-
+    event: any;
     @Input() timeInSeconds: number;
     public timer: ITimer;
 
-    constructor() {
+    constructor(
+      public navParams: NavParams,
+      private service: HttpServiceProvider) {
+      this.event = this.navParams.get('event')
     }
 
     ngOnInit() {
@@ -39,6 +44,7 @@ export class TimerComponent {
         this.timer.hasStarted = true;
         this.timer.runTimer = true;
         this.timerTick();
+        this.service.startAppt({"a_id":this.event.a_id}).subscribe()
     }
 
     pauseTimer() {

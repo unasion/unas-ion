@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 import * as moment from 'moment';
+// import * as io from "socket.io-client";
 
 
 @Injectable()
@@ -11,7 +12,7 @@ export class HttpServiceProvider {
   user_id: any;
   contacts: any;
   services: any;
-  myIP = 'http://10.0.0.248:4200'
+  myIP = 'http://10.0.0.98:4200'
 
   constructor(
     public http: Http,
@@ -30,7 +31,7 @@ export class HttpServiceProvider {
     store.get('services').then((x)=> {
       if(x){
         this.services = x
-      }      
+      }
     })
   }
 
@@ -70,7 +71,7 @@ export class HttpServiceProvider {
         return res.json()
       })
   }
- 
+
   getAppts(id) {
     console.log('--- hitting service to get appts ---',id)
     return this.http.post(`${this.myIP}/api/appts`, id)
@@ -82,13 +83,25 @@ export class HttpServiceProvider {
 
   cancelAppt(ids){
     console.log('-- ids in service to delete --',ids);
-    return this.http.post(`${this.myIP}/api/cal/delete`, ids)
+    return this.http.post(`${this.myIP}/api/delete-request`, ids)
       .map(res => res.json())
   }
 
   editAppt(data){
     console.log('-- edit appt in service --',data);
     return this.http.post(`${this.myIP}/api/cal/edit`,data)
+      .map(res => res.json())
+  }
+
+  startAppt(data){
+    console.log('starting appt in service', data)
+    return this.http.post(`${this.myIP}/api/start-appt`, data)
+      .map(res => res.json())
+  }
+
+  endAppt(data){
+    console.log('finishing appt in service', data)
+    return this.http.post(`${this.myIP}/api/end-appt`, data)
       .map(res => res.json())
   }
 
