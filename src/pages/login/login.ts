@@ -29,9 +29,11 @@ export class LoginPage {
       popover.present();
 
       popover.onDidDismiss(data =>{
-        console.log('data from popup', data[0].b_id);
-        this.storage.set('user', data[0]);
-        this.navCtrl.push(TabsPage, data[0].b_id)
+        if(data){
+          console.log('data from popup', data[0].b_id);
+          this.storage.set('user', data[0]);
+          this.navCtrl.push(TabsPage, data[0].b_id)
+        }
       })
   }
 

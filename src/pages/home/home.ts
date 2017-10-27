@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, AlertController, MenuController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import * as moment from 'moment'
-import { EventModalPage } from '../event-modal/event-modal';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
@@ -25,7 +24,6 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
-    private modalCtrl: ModalController,
     private alertCtrl: AlertController,
     public menuCtrl: MenuController,
     private storage: Storage,
@@ -77,30 +75,6 @@ export class HomePage {
       })
     })
   } 
-
-  addEvent(){
-    let modal = this.modalCtrl.create(EventModalPage, {selectedDay: this.selectedDay})
-    modal.present()
-
-    modal.onDidDismiss(data =>{
-      if(data){
-        console.log('-- modal data --',data);
-        let eventData = data;
-
-        eventData.startTime = new Date(data.startTime)
-        eventData.endTime = new Date(data.endTime)
-
-        let events = this.eventSource
-        events.push(eventData)
-        this.eventSource = []
-        setTimeout(()=>{
-          this.eventSource = events
-        })
-        console.log('this.eventSource',this.eventSource);
-      
-      }
-    })
-  }
 
   onViewTitleChanged(title){
     this.viewTitle = title

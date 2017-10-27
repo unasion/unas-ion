@@ -27,10 +27,11 @@ export class ApptSurveyPage {
   cancel() {
     this.viewCtrl.dismiss()
   }
+  survey = 'survey done'
 
   pushPage() {
       this.presentLoading()
-      this.navCtrl.popToRoot();
+      this.navCtrl.popAll()
       // this.navCtrl.pop();
       // this.navCtrl.pop();
   }

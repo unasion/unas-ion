@@ -95,11 +95,39 @@ export class ApptPage {
   }
 
   apptStartModal(event) {
+
     let modal = this.modalCtrl.create(ApptStartPage, {event: event});
     modal.present();
     modal.onDidDismiss(data =>{
-      console.log('-- data on dismiss --',data);
-      if(data[1] == 'yes'){
+      if(!data){
+        console.log('-- NOT data on dismiss --',event);
+        for (var i = 0; i < this.current.length; i++) {
+          if(this.current[i].a_id == event.a_id){
+          this.current.splice(i,1);
+          }
+        }
+      let events = this.eventSource
+        for (var j = 0; j < events.length; j++) {
+          var go = false
+          // console.log('log condition in delete', events[j].a_id,'===',data.a_id);
+          if(events[j].a_id == event.a_id){
+          events.splice(j,1);
+          // console.log('in first if---',events,this.eventSource);
+          go = true
+          }
+        }
+        if(go==true){
+          this.eventSource = []
+          setTimeout(()=>{
+            this.eventSource = events
+            })
+          // console.log('in second if---',events,this.eventSource);
+        }
+        // console.log('leving delete fun---',events,this.eventSource);
+        return this.eventSource, this.current
+      }
+
+      else if(data[1] == 'yes'){
         var ready = 'no';
         console.log('-----yes------yes-----');
         let editAppt = data[0]
@@ -136,7 +164,7 @@ export class ApptPage {
             })
         }
       }
-      if(data[1]=='deleted'){
+      else if(data[1]=='deleted'){
         console.log('-----deleted------deleted-----');
         for (var i = 0; i < this.current.length; i++) {
           if(this.current[i].a_id == data[0].a_id){

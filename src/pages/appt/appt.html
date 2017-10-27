@@ -68,7 +68,7 @@
       <ion-list>
           <ion-item *ngFor='let event of current' (click)='apptStartModal(event)'>
             <div class='appt-info'>
-              <div> {{ event.title }} </div>
+              <div> {{ event.title }} </div>  
               <div> <p> {{ event.notes }} </p> </div>
             </div>
             <p>Start: {{ event.startTime }}</p>
