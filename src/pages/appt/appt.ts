@@ -164,6 +164,7 @@ export class ApptPage {
         return this.eventSource, this.current
       }
     })
+
   }
 
   ionViewDidLoad() {
@@ -180,7 +181,7 @@ export class ApptPage {
 
             let events = []
             data.map((x)=> {
-    
+
               let first = x.start_time.split('T')[0]
               let last = x.start_time.split('T')[1].replace('T','')
               let year = first.split('-')[0]
@@ -192,8 +193,8 @@ export class ApptPage {
               d.setFullYear(year,month-1,day);
               d.setHours(hour)
               d.setMinutes(min)
-              
-    
+
+
               events.push({
                 a_id: x.a_id,
                 title: x.c_first,
@@ -208,18 +209,18 @@ export class ApptPage {
                   'startTime' : moment(d).format('LLLL'),
                   'endTime' : moment(d).format('LLLL')
                 })
-              
+
             })
             this.eventSource = events
             console.log('this.eventSource',this.eventSource);
-            
+
           })
         })
       }
-      
+
       ionViewDidEnter() {
         console.log('-- is event edited? --',this.current);
-        
+
       }
 
 }

@@ -74,6 +74,9 @@ export class ApptStartPage {
   timerModal() {
     let modal = this.modalCtrl.create(TimerPage, {event: this.event});
     modal.present();
+    modal.onDidDismiss(data => {
+      this.viewCtrl.dismiss(data)
+    })
   }
 
   ionViewDidLoad() {

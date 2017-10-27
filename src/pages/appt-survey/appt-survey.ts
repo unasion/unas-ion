@@ -31,14 +31,12 @@ export class ApptSurveyPage {
   pushPage() {
       this.presentLoading()
       this.navCtrl.popToRoot();
-      // this.navCtrl.pop();
-      // this.navCtrl.pop();
   }
 
   presentLoading() {
     let loader = this.loadingCtrl.create({
       content: "Finishing appointment, please wait...",
-      duration: 2000
+      duration: 1000
     });
     loader.present();
   }
