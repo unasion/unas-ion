@@ -39,7 +39,7 @@ export class ApptSurveyPage {
   presentLoading() {
     let loader = this.loadingCtrl.create({
       content: "Finishing appointment, please wait...",
-      duration: 2000
+      duration: 1000
     });
     loader.present();
   }
