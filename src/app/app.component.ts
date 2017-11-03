@@ -21,8 +21,9 @@ export class MyApp {
   public timecard = {
     timeIn: {},
     timeOut: {},
-    barberId: NaN,
-    shopId: NaN
+    id: NaN,
+    shopId: NaN,
+    isUser: false
   };
   clockIn: boolean;
 
@@ -65,7 +66,7 @@ export class MyApp {
     }
     else if (!this.clockIn) {
       this.timecard.timeOut = moment(new Date()).format('YYYY-MM-DD HH:mm:ss z');
-      this.timecard.barberId = this.profile.b_id;
+      this.timecard.id = this.profile.b_id;
       this.timecard.shopId = this.profile.shop
       this.service.postTimecards(this.timecard).subscribe((data) => {
         console.log('sending timecard to service')
