@@ -99,9 +99,20 @@ export class HttpServiceProvider {
       .map(res => res.json())
   }
 
+  saveApptTime(data){
+    console.log('length of appt', data)
+    return this.http.post(`${this.myIP}/api/postApptTime`, data).map(res => res.json())
+  }
+
   endAppt(data){
     console.log('finishing appt in service', data)
     return this.http.post(`${this.myIP}/api/end-appt`, data)
+      .map(res => res.json())
+  }
+
+  postTips(data){
+    console.log('tips in service', data)
+    return this.http.post(`${this.myIP}/api/post-tips`, data)
       .map(res => res.json())
   }
 

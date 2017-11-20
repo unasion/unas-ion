@@ -23,6 +23,7 @@ import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { LoginPopOverPage } from '../pages/login-pop-over/login-pop-over';
 import { FormsModule } from '@angular/forms';
+import { LoginModalPage } from '../pages/login-modal/login-modal';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { FormsModule } from '@angular/forms';
     TimerPage,
     TimerComponent,
     ApptSurveyPage,
-    LoginPopOverPage
+    LoginPopOverPage,
+    LoginModalPage
   ],
   imports: [
     NgCalendarModule,
@@ -63,7 +65,8 @@ import { FormsModule } from '@angular/forms';
     EditApptModalPage,
     TimerPage,
     ApptSurveyPage,
-    LoginPopOverPage
+    LoginPopOverPage,
+    LoginModalPage
   ],
   providers: [
     StatusBar,

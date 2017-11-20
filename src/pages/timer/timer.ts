@@ -10,7 +10,7 @@ import { HttpServiceProvider } from "../../providers/http-service/http-service"
     templateUrl: 'timer.html'
 })
 export class TimerPage {
-
+  cutTime: any;
   event: any;
 
   @ViewChild(TimerComponent) timer: TimerComponent;
@@ -30,10 +30,11 @@ export class TimerPage {
     }
 
     surveyModal(){
+      this.service.saveApptTime(this.cutTime).subscribe()
       let modal = this.modalCtrl.create(ApptSurveyPage);
       this.service.endAppt({"a_id":this.event.a_id}).subscribe()
       modal.present();
-      modal.dismiss(this.event)
+      // modal.dismiss(this.event)
 
     }
 
