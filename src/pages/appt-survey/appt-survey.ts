@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController, App, LoadingController } from 'ionic-angular';
+import { HttpServiceProvider } from "../../providers/http-service/http-service"
 // import { Ionic2RatingModule } from 'ionic2-rating';
 // import { TabsPage } from '../tabs/tabs';
 
@@ -17,8 +18,20 @@ import { NavController, NavParams, ViewController, App, LoadingController } from
 })
 export class ApptSurveyPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, public appCtrl: App, public loadingCtrl: LoadingController) {
+
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private viewCtrl: ViewController,
+    public appCtrl: App,
+    public loadingCtrl: LoadingController,
+    private service: HttpServiceProvider) {
+      this.event = this.navParams.get('event')
   }
+
+  event: any;
+  onTime:boolean;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ApptSurveyPage');
@@ -28,9 +41,22 @@ export class ApptSurveyPage {
     this.viewCtrl.dismiss()
   }
 
-  pushPage() {
+  pushPage(tip, rating) {
+    let survey = {
+      a_id: this.event.a_id,
+      onTime: this.onTime,
+      tip: Number(tip),
+      rating: rating
+    }
+
+    console.log('survey', survey)
+      this.service.submitSurvey(survey).subscribe()
+      this.service.endAppt({"a_id":this.event.a_id}).subscribe(data => {
+        data[1] = 'deleted'
+        this.viewCtrl.dismiss(data)
+      })
       this.presentLoading()
-      this.navCtrl.popToRoot();
+  
   }
 
   presentLoading() {

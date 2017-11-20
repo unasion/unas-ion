@@ -12,7 +12,7 @@ export class HttpServiceProvider {
   user_id: any;
   contacts: any;
   services: any;
-  myIP = 'http://192.241.237.169:8085'
+  myIP = 'http://10.0.0.98:4200'
 
   constructor(
     public http: Http,
@@ -135,6 +135,12 @@ export class HttpServiceProvider {
 
     return this.http.post(`${this.myIP}/api/add-appt`, event)
       .map(res => res.json());
+  }
+
+
+  submitSurvey(survey){
+    return this.http.post(`${this.myIP}/api/submit-survey`, survey)
+      .map(res => res.json())
   }
 
 }

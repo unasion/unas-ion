@@ -53,7 +53,8 @@ export class ApptPage {
               'notes': data.notes,
               'title': data.title,
               'startTime': moment(data.startTime).format('LLLL'),
-              'endTime': moment(data.endTime).format('LLLL')
+              'endTime': moment(data.endTime).format('LLLL'),
+              a_id: data.a_id
             })
 
         let eventData = data;

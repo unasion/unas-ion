@@ -30,10 +30,11 @@ export class TimerPage {
     }
 
     surveyModal(){
-      let modal = this.modalCtrl.create(ApptSurveyPage);
-      this.service.endAppt({"a_id":this.event.a_id}).subscribe()
+      let modal = this.modalCtrl.create(ApptSurveyPage,  {event: this.event});
       modal.present();
-      modal.dismiss(this.event)
+      modal.onDidDismiss(data => {
+        this.viewCtrl.dismiss(data)
+      })
 
     }
 
