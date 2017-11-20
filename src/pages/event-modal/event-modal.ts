@@ -14,7 +14,8 @@ export class EventModalPage {
     title: '',
     notes: '',
     startTime : new Date().toISOString(),
-    endTime : new Date().toISOString()
+    endTime : new Date().toISOString(),
+    a_id: NaN
   }
   minDate = new Date().toISOString()
   barbers:any;
@@ -45,11 +46,14 @@ export class EventModalPage {
     })
 
   }
-  
-  save(){    
-    this.viewCtrl.dismiss(this.event);
-    this.service.addEvent(this.event).subscribe()
-    console.log('-- event saved in Modal --', this.event)
+
+  save(){
+    this.service.addEvent(this.event).subscribe(data => {
+      this.event.a_id = data[0].a_id
+      console.log('data back', data)
+      console.log('-- event saved in Modal --', this.event)
+      this.viewCtrl.dismiss(this.event);
+    })
   }
 
   cancel(){
