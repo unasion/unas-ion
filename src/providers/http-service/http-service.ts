@@ -12,7 +12,7 @@ export class HttpServiceProvider {
   user_id: any;
   contacts: any;
   services: any;
-  myIP = 'http://10.0.0.98:4200'
+  myIP = 'http://10.0.0.52:4200'
 
   constructor(
     public http: Http,
@@ -97,6 +97,11 @@ export class HttpServiceProvider {
     console.log('starting appt in service', data)
     return this.http.post(`${this.myIP}/api/start-appt`, data)
       .map(res => res.json())
+  }
+
+  saveApptTime(data){
+    console.log('length of appt', data)
+    return this.http.post(`${this.myIP}/api/appt/appt-length`, data).map(res => res.json())
   }
 
   endAppt(data){

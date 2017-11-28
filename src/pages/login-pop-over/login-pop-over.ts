@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, AlertController, ViewController } 
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 
 
-@IonicPage()
 @Component({
   selector: 'page-login-pop-over',
   templateUrl: 'login-pop-over.html',
