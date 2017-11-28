@@ -1,8 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Injectable } from '@angular/core';
 import { NavParams } from 'ionic-angular';
 import { ITimer } from './itimer';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 
+
+@Injectable()
 @Component({
   selector: 'timer',
   templateUrl: 'timer.html'
@@ -11,11 +13,16 @@ export class TimerComponent {
     event: any;
     @Input() timeInSeconds: number;
     public timer: ITimer;
+    apptTimer: any;
 
     constructor(
       public navParams: NavParams,
       private service: HttpServiceProvider) {
       this.event = this.navParams.get('event')
+    }
+
+    apptTime(){
+      this.apptTimer = this.timer.displayTime
     }
 
     ngOnInit() {
@@ -59,7 +66,7 @@ export class TimerComponent {
         setTimeout(() => {
             if (!this.timer.runTimer) { return; }
             this.timer.secondsRemaining++;
-            this.timer.displayTime = this.getSecondsAsDigitalClock(this.timer.secondsRemaining);
+            this.timer.displayTime = this.getSecondsAsDigitalClock(this.timer.secondsRemaining)
             if (this.timer.secondsRemaining >= 0) {
                 this.timerTick();
             }

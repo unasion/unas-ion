@@ -12,7 +12,7 @@ export class HttpServiceProvider {
   user_id: any;
   contacts: any;
   services: any;
-  myIP = 'http://192.241.237.169:8085'
+  myIP = 'http://10.0.0.52:4200'
 
   constructor(
     public http: Http,
@@ -101,18 +101,12 @@ export class HttpServiceProvider {
 
   saveApptTime(data){
     console.log('length of appt', data)
-    return this.http.post(`${this.myIP}/api/postApptTime`, data).map(res => res.json())
+    return this.http.post(`${this.myIP}/api/appt/appt-length`, data).map(res => res.json())
   }
 
   endAppt(data){
     console.log('finishing appt in service', data)
     return this.http.post(`${this.myIP}/api/end-appt`, data)
-      .map(res => res.json())
-  }
-
-  postTips(data){
-    console.log('tips in service', data)
-    return this.http.post(`${this.myIP}/api/post-tips`, data)
       .map(res => res.json())
   }
 
@@ -146,6 +140,12 @@ export class HttpServiceProvider {
 
     return this.http.post(`${this.myIP}/api/add-appt`, event)
       .map(res => res.json());
+  }
+
+
+  submitSurvey(survey){
+    return this.http.post(`${this.myIP}/api/submit-survey`, survey)
+      .map(res => res.json())
   }
 
 }

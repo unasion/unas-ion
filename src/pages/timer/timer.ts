@@ -10,10 +10,12 @@ import { HttpServiceProvider } from "../../providers/http-service/http-service"
     templateUrl: 'timer.html'
 })
 export class TimerPage {
-  cutTime: any;
+
   event: any;
 
   @ViewChild(TimerComponent) timer: TimerComponent;
+
+
 
     constructor(
       public navCtrl: NavController,
@@ -30,11 +32,21 @@ export class TimerPage {
     }
 
     surveyModal(){
-      this.service.saveApptTime(this.cutTime).subscribe()
-      let modal = this.modalCtrl.create(ApptSurveyPage);
-      this.service.endAppt({"a_id":this.event.a_id}).subscribe()
+
+      this.timer.apptTime()
+
+      let apptObj = {
+        a_id: this.event.a_id,
+        time: this.timer.apptTimer
+      }
+      
+      console.log(apptObj)
+      this.service.saveApptTime(apptObj).subscribe()
+      let modal = this.modalCtrl.create(ApptSurveyPage,  {event: this.event});
       modal.present();
-      // modal.dismiss(this.event)
+      modal.onDidDismiss(data => {
+        this.viewCtrl.dismiss(data)
+      })
 
     }
 
