@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -8,11 +8,13 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { Storage } from '@ionic/storage';
 import { HttpServiceProvider } from '../providers/http-service/http-service';
 import * as moment from 'moment';
+import { NavController } from 'ionic-angular';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+  @ViewChild('mycontent') nav: NavController
   rootPage: any = LoginPage
   secondPage: any = TabsPage
   show: boolean = true;
@@ -32,7 +34,7 @@ export class MyApp {
     statusBar: StatusBar,
     splashScreen: SplashScreen,
     private storage: Storage,
-    public service: HttpServiceProvider
+    public service: HttpServiceProvider,
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -56,8 +58,10 @@ export class MyApp {
 
   logout(){
     console.log('-- we logging out ---');
-    this.storage.remove('user')
-
+    this.storage.remove('user');
+    this.storage.remove('contacts');
+    this.storage.remove('services');
+    this.nav.popToRoot();
   }
 
   timeStamp() {
