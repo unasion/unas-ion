@@ -81,6 +81,14 @@ export class HttpServiceProvider {
       })
   }
 
+  getBarberStats(id) {
+    console.log('in service barber stats----', id)
+    return this.http.post(`${this.myIP}/api/get-barber-stats`,id).map(res => {
+      console.log('stats retrieved!', res.json());
+      return res.json()
+    })
+  }
+
   cancelAppt(ids){
     console.log('-- ids in service to delete --',ids);
     return this.http.post(`${this.myIP}/api/delete-request`, ids)
@@ -147,5 +155,4 @@ export class HttpServiceProvider {
     return this.http.post(`${this.myIP}/api/submit-survey`, survey)
       .map(res => res.json())
   }
-
 }
