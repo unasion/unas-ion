@@ -1,14 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController, App, LoadingController } from 'ionic-angular';
-// import { Ionic2RatingModule } from 'ionic2-rating';
-// import { TabsPage } from '../tabs/tabs';
+import { HttpServiceProvider } from "../../providers/http-service/http-service"
 
-/**
- * Generated class for the ApptSurveyPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 
 
 @Component({
@@ -17,8 +10,20 @@ import { NavController, NavParams, ViewController, App, LoadingController } from
 })
 export class ApptSurveyPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, public appCtrl: App, public loadingCtrl: LoadingController) {
+
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private viewCtrl: ViewController,
+    public appCtrl: App,
+    public loadingCtrl: LoadingController,
+    private service: HttpServiceProvider) {
+      this.event = this.navParams.get('event')
   }
+
+  event: any;
+  onTime:boolean;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ApptSurveyPage');
@@ -29,11 +34,22 @@ export class ApptSurveyPage {
   }
   survey = 'survey done'
 
-  pushPage() {
+  pushPage(tip, rating) {
+    let survey = {
+      a_id: this.event.a_id,
+      onTime: this.onTime,
+      tip: Number(tip),
+      rating: rating
+    }
+
+    console.log('survey', survey)
+      this.service.submitSurvey(survey).subscribe()
+      this.service.endAppt({"a_id":this.event.a_id}).subscribe(data => {
+        data[1] = 'deleted'
+        this.viewCtrl.dismiss(data)
+      })
       this.presentLoading()
-      this.navCtrl.popToRoot()
-      // this.navCtrl.pop();
-      // this.navCtrl.pop();
+  
   }
 
   presentLoading() {

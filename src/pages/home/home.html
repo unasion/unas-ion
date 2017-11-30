@@ -27,14 +27,14 @@
           <ion-icon name="logo-usd" item-start></ion-icon>
           <div class='stats-view' >
             <div>Wages:</div>
-            <div>$300</div>
+            <div>${{totalWages}}</div>
           </div>
         </ion-item>
         <ion-item >
           <ion-icon name="md-cash" item-start></ion-icon>
           <div class='stats-view' >
             <div>Tips:</div>
-            <div>$48</div>
+            <div>${{totalTips}}</div>
           </div>
         </ion-item>
         <ion-item >
@@ -47,7 +47,7 @@
         <ion-item >
           <ion-icon name="md-calendar" item-start></ion-icon>
           <div class='stats-view' >
-            <div>Upcomming Appointments:</div>
+            <div>Upcoming Appointments:</div>
             <div>5</div>
           </div>
         </ion-item>
@@ -88,7 +88,7 @@
                   <div class="no-events-label">{{noEventsLabel}}</div>
               </ion-item>
           </ion-list>
-      </ng-template> 
+      </ng-template>
 
     </ion-card-content>
 

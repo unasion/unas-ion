@@ -15,6 +15,8 @@ export class TimerPage {
 
   @ViewChild(TimerComponent) timer: TimerComponent;
 
+
+
     constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
@@ -30,10 +32,22 @@ export class TimerPage {
     }
 
     surveyModal(){
-      let modal = this.modalCtrl.create(ApptSurveyPage);
-      this.service.endAppt({"a_id":this.event.a_id}).subscribe()
+
+      this.timer.apptTime()
+
+      let apptObj = {
+        a_id: this.event.a_id,
+        time: this.timer.apptTimer
+      }
+      
+      console.log(apptObj)
+      this.service.saveApptTime(apptObj).subscribe()
+      let modal = this.modalCtrl.create(ApptSurveyPage,  {event: this.event});
       modal.present();
-     
+      modal.onDidDismiss(data => {
+        this.viewCtrl.dismiss(data)
+      })
+
     }
 
 }

@@ -1,0 +1,43 @@
+
+<ion-header>
+
+  <ion-navbar color='primary'>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+<div *ngIf="show" padding>
+  <ion-item>
+    <ion-label floating>Email</ion-label>
+    <ion-input type="text" [(ngModel)]='userData.userName'></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Password</ion-label>
+    <ion-input type="password" [(ngModel)]='userData.password'></ion-input>
+  </ion-item>
+</div>
+
+<div *ngIf="!show" padding>
+  <ion-item><ion-label floating>First Name</ion-label>
+  <ion-input type="text" [(ngModel)]='userData.firstName'></ion-input></ion-item>
+  <ion-item><ion-label floating>Last Name</ion-label>
+  <ion-input type="text" [(ngModel)]='userData.lastName'></ion-input></ion-item>
+  <ion-item><ion-label floating>Email</ion-label>
+  <ion-input type="text" [(ngModel)]='userData.userName'></ion-input></ion-item>
+  <ion-item><ion-label floating>Password</ion-label>
+  <ion-input type="password" [(ngModel)]='userData.password'></ion-input></ion-item>
+</div>
+
+
+  <button *ngIf="show" color='secondary' ion-button full (click)='login()' > Login
+  </button>
+  <button *ngIf="show" color='light' ion-button full (click)='newUser()' > New User?
+  </button>
+  <button *ngIf="!show" color='secondary' ion-button full (click)='signUp()' > Create Account
+  </button>
+  <button color='light' ion-button full (click)='cancel()' >Cancel
+  </button>
+</ion-content>

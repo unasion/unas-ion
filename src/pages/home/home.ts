@@ -3,7 +3,9 @@ import { NavController, NavParams, AlertController, MenuController } from 'ionic
 import * as moment from 'moment'
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { Storage } from '@ionic/storage';
+import { EventModalPage } from '../event-modal/event-modal'
 import 'rxjs/add/operator/map';
+import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 
 @Component({
   selector: 'page-home',
@@ -15,7 +17,9 @@ export class HomePage {
   home = HomePage;
   eventSource = [];
   viewTitle: string;
-  selectedDay = new Date()
+  selectedDay = new Date();
+  totalTips: any;
+  totalWages: any;
 
   calendar ={
     mode: 'month',
@@ -28,7 +32,8 @@ export class HomePage {
     public menuCtrl: MenuController,
     private storage: Storage,
     public service: HttpServiceProvider,
-    public navParams: NavParams
+    public navParams: NavParams,
+    public modalCtrl: ModalController
   ) {
 
   }
@@ -46,7 +51,7 @@ export class HomePage {
       console.log(user)
       this.service.getAppts({id:user.b_id}).subscribe((data)=> {
         console.log('-- Appts coming from DB --',data);
-        
+
         let events = []
         data.map((x)=> {
 
@@ -61,7 +66,7 @@ export class HomePage {
           d.setFullYear(year,month-1,day);
           d.setHours(hour)
           d.setMinutes(min)
-          
+
           events.push({
             a_id: x.a_id,
             title: x.c_first,
@@ -69,12 +74,62 @@ export class HomePage {
             startTime : d,
             endTime : d
           })
-          
+
         })
         this.eventSource = events
       })
+      this.service.getBarberStats({id:user.b_id}).subscribe((stats) => {
+        console.log('barber stats here', stats);
+
+        let barberStats = [];
+        let barberTips = [];
+        let barberWages = [];
+        stats.map((x) => {
+          if (x.tip !== null){
+            let floatedValue1 = parseFloat(x.tip.replace(/[^\d\.]/, ''));
+            barberTips.push(floatedValue1)
+          }
+          if (x.total !== null){
+            let floatedValue2 = parseFloat(x.total.replace(/[^\d\.]/, ''));
+            barberWages.push(floatedValue2)
+          }
+        })
+        let totalTips = 0;
+        barberTips.forEach(item => totalTips += parseFloat(item ? item : 0.0));
+
+        let totalWages = 0;
+        barberWages.forEach(y => totalWages += parseFloat(y ? y : 0.0));
+        console.log('total tips', totalTips)
+        console.log('total wages', totalWages)
+        this.totalTips = totalTips;
+        this.totalWages = totalWages;
+      })
     })
-  } 
+  }
+
+  addEvent(){
+    let modal = this.modalCtrl.create(EventModalPage, {selectedDay: this.selectedDay})
+    modal.present()
+
+    modal.onDidDismiss(data =>{
+      if(data){
+        console.log('-- modal data --',data);
+        let eventData = data;
+
+        eventData.startTime = new Date(data.startTime)
+        eventData.endTime = new Date(data.endTime)
+
+        let events = this.eventSource
+        events.push(eventData)
+        this.eventSource = []
+        setTimeout(()=>{
+          this.eventSource = events
+        })
+        console.log('this.eventSource',this.eventSource);
+
+      }
+    })
+  }
 
   onViewTitleChanged(title){
     this.viewTitle = title

@@ -12,7 +12,7 @@ export class HttpServiceProvider {
   user_id: any;
   contacts: any;
   services: any;
-  myIP = 'http://192.241.237.169:8085'
+  myIP = 'http://10.0.0.52:4200'
 
   constructor(
     public http: Http,
@@ -81,6 +81,14 @@ export class HttpServiceProvider {
       })
   }
 
+  getBarberStats(id) {
+    console.log('in service barber stats----', id)
+    return this.http.post(`${this.myIP}/api/get-barber-stats`,id).map(res => {
+      console.log('stats retrieved!', res.json());
+      return res.json()
+    })
+  }
+
   cancelAppt(ids){
     console.log('-- ids in service to delete --',ids);
     return this.http.post(`${this.myIP}/api/delete-request`, ids)
@@ -97,6 +105,11 @@ export class HttpServiceProvider {
     console.log('starting appt in service', data)
     return this.http.post(`${this.myIP}/api/start-appt`, data)
       .map(res => res.json())
+  }
+
+  saveApptTime(data){
+    console.log('length of appt', data)
+    return this.http.post(`${this.myIP}/api/appt/appt-length`, data).map(res => res.json())
   }
 
   endAppt(data){
@@ -137,4 +150,9 @@ export class HttpServiceProvider {
       .map(res => res.json());
   }
 
+
+  submitSurvey(survey){
+    return this.http.post(`${this.myIP}/api/submit-survey`, survey)
+      .map(res => res.json())
+  }
 }
