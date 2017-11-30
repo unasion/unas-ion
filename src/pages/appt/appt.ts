@@ -108,15 +108,15 @@ export class ApptPage {
         }
       let events = this.eventSource
         for (var j = 0; j < events.length; j++) {
-          var go = false
+          var go1 = false
           // console.log('log condition in delete', events[j].a_id,'===',data.a_id);
           if(events[j].a_id == event.a_id){
           events.splice(j,1);
           // console.log('in first if---',events,this.eventSource);
-          go = true
+          go1 = true
           }
         }
-        if(go==true){
+        if(go1==true){
           this.eventSource = []
           setTimeout(()=>{
             this.eventSource = events

@@ -33,8 +33,7 @@ export class TimerPage {
       let modal = this.modalCtrl.create(ApptSurveyPage);
       this.service.endAppt({"a_id":this.event.a_id}).subscribe()
       modal.present();
-      modal.dismiss(this.event)
-
+     
     }
 
 }

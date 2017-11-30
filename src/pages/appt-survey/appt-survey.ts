@@ -31,7 +31,7 @@ export class ApptSurveyPage {
 
   pushPage() {
       this.presentLoading()
-      this.navCtrl.popAll()
+      this.navCtrl.popToRoot()
       // this.navCtrl.pop();
       // this.navCtrl.pop();
   }
