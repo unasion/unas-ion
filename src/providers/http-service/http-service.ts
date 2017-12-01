@@ -12,7 +12,7 @@ export class HttpServiceProvider {
   user_id: any;
   contacts: any;
   services: any;
-  myIP = 'http://10.0.0.248:4200'
+  myIP = 'http://192.241.237.169:8085'
 
   constructor(
     public http: Http,
