@@ -1,5 +1,4 @@
 
-
 <ion-header>
   <ion-navbar align-title="center" color='primary' >
 
@@ -15,8 +14,16 @@
 
 </ion-header>
 
-
 <ion-content >
+<ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+      pullingIcon="ios-arrow-down"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+      >
+      </ion-refresher-content>
+ </ion-refresher>
 
    <ion-card>
     <ion-card-header text-left color='primary' >Daily Stats</ion-card-header>
@@ -27,28 +34,28 @@
           <ion-icon name="logo-usd" item-start></ion-icon>
           <div class='stats-view' >
             <div>Wages:</div>
-            <div>${{totalWages}}</div>
+            <div>{{totalWages | currency:'USD':true}}</div>
           </div>
         </ion-item>
         <ion-item >
           <ion-icon name="md-cash" item-start></ion-icon>
           <div class='stats-view' >
             <div>Tips:</div>
-            <div>${{totalTips}}</div>
+            <div>{{totalTips | currency:'USD':true}}</div>
           </div>
         </ion-item>
         <ion-item >
           <ion-icon name="ios-clock-outline" item-start></ion-icon>
           <div class='stats-view' >
             <div>Time Spent on Cuts:</div>
-            <div>89 mins</div>
+            <div>{{cutTime.time}}</div>
           </div>
         </ion-item>
         <ion-item >
           <ion-icon name="md-calendar" item-start></ion-icon>
           <div class='stats-view' >
             <div>Upcoming Appointments:</div>
-            <div>5</div>
+            <div>{{upcoming}}</div>
           </div>
         </ion-item>
 

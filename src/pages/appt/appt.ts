@@ -40,6 +40,7 @@ export class ApptPage {
   ) {
      this.saved = this.navParams.get('saved')
      console.log('-- save --',this.saved)
+     this.doRefresh(0);
    }
 
   addEvent(){
@@ -196,7 +197,9 @@ export class ApptPage {
 
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
+    this.current = []
+    this.eventSource = []
         console.log('home loaded')
         this.service.getContacts({id:1}).subscribe((data) => {
           this.storage.set('contacts', data)
@@ -247,9 +250,62 @@ export class ApptPage {
         })
       }
 
-      ionViewDidEnter() {
-        console.log('-- is event edited? --',this.current);
+      doRefresh(refresher){
+        // this.current = []
+        // this.eventSource = []
+        //     console.log('home loaded')
+        //     this.service.getContacts({id:1}).subscribe((data) => {
+        //       this.storage.set('contacts', data)
+        //     })
+        //     this.service.getServices({id:1}).subscribe((data) => {
+        //       this.storage.set('services', data)
+        //     })
+        //     this.storage.get('user').then((user)=> {
+        //       console.log(user)
+        //       this.service.getAppts({id:user.b_id}).subscribe((data)=> {
+    
+        //         let events = []
+        //         data.map((x)=> {
+    
+        //           let first = x.start_time.split('T')[0]
+        //           let last = x.start_time.split('T')[1].replace('T','')
+        //           let year = first.split('-')[0]
+        //           let month = first.split('-')[1]
+        //           let day = first.split('-')[2]
+        //           let hour = last.split(':')[0]
+        //           let min = last.split(':')[1].replace(':','')
+        //           let d = new Date()
+        //           d.setFullYear(year,month-1,day);
+        //           d.setHours(hour)
+        //           d.setMinutes(min)
+    
+    
+        //           events.push({
+        //             a_id: x.a_id,
+        //             title: x.c_first,
+        //             notes: x.service,
+        //             startTime : d,
+        //             endTime : d
+        //           })
+        //           this.current.push({
+        //               'a_id': x.a_id,
+        //               'title': x.c_first,
+        //               'notes': x.service,
+        //               'startTime' : moment(d).format('LLLL'),
+        //               'endTime' : moment(d).format('LLLL')
+        //             })
+    
+        //         })
+        //         this.eventSource = events
+        //         console.log('this.eventSource',this.eventSource);
+    
+        //       })
+        //     })
+            if(refresher != 0){
+              refresher.complete();
+            }
 
       }
+
 
 }

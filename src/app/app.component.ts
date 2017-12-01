@@ -67,9 +67,11 @@ export class MyApp {
       this.timecard.timeOut = moment(new Date()).format('YYYY-MM-DD HH:mm:ss z');
       this.timecard.id = this.profile.b_id;
       this.timecard.shopId = this.profile.shop
+      console.log('this.timecard',this.timecard);
+      
       this.service.postTimecards(this.timecard).subscribe((data) => {
         console.log('sending timecard to service')
       })
-    }
+    } 
   }
 }
