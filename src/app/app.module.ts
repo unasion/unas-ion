@@ -24,6 +24,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { LoginPopOverPage } from '../pages/login-pop-over/login-pop-over';
 import { FormsModule } from '@angular/forms';
 import { LoginModalPage } from '../pages/login-modal/login-modal';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { LoginModalPage } from '../pages/login-modal/login-modal';
     IonicStorageModule.forRoot(),
     HttpModule,
     Ionic2RatingModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

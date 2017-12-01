@@ -19,6 +19,17 @@
 </ion-header>
 
 <ion-content>
+  
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+        pullingIcon="ios-arrow-down"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing..."
+        >
+        </ion-refresher-content>
+   </ion-refresher>
+
   <ion-toolbar>
     <ion-grid>
       <ion-row text-center >
@@ -68,7 +79,7 @@
       <ion-list>
           <ion-item *ngFor='let event of current' (click)='apptStartModal(event)'>
             <div class='appt-info'>
-              <div> {{ event.title }} </div>
+              <div> {{ event.title }} </div>  
               <div> <p> {{ event.notes }} </p> </div>
             </div>
             <p>Start: {{ event.startTime }}</p>

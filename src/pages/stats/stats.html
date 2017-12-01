@@ -14,13 +14,27 @@
 </ion-header>
 
 <ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+        pullingIcon="ios-arrow-down"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing..."
+        >
+        </ion-refresher-content>
+   </ion-refresher>
 
     <ion-card>
       <ion-card-header>
         Wages
       </ion-card-header>
       <ion-card-content>
-        <canvas #lineCanvas2 ></canvas>
+          <canvas baseChart 
+          [data]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [chartType]="lineChartType">
+        </canvas>
       </ion-card-content>
     </ion-card>
 
@@ -29,7 +43,12 @@
         Tips
       </ion-card-header>
       <ion-card-content>
-        <canvas #lineCanvas3  ></canvas>
+          <canvas baseChart 
+          [data]="lineChartData2"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [chartType]="lineChartType">
+        </canvas>
       </ion-card-content>
     </ion-card>
 
@@ -38,7 +57,11 @@
         Wages vs. Tips
       </ion-card-header>
       <ion-card-content>
-        <canvas #doughnutCanvas></canvas>
+          <canvas baseChart
+          [data]="doughnutChartData"
+          [labels]="doughnutChartLabels"
+          [chartType]="doughnutChartType">
+        </canvas>
       </ion-card-content>
     </ion-card>
 
@@ -47,7 +70,12 @@
         Time Spent Cutting
       </ion-card-header>
       <ion-card-content>
-        <canvas #lineCanvas ></canvas>
+          <canvas baseChart 
+          [data]="lineChartData3"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [chartType]="lineChartType">
+        </canvas>
       </ion-card-content>
     </ion-card>
 

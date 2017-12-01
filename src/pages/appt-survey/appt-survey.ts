@@ -1,15 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController, App, LoadingController } from 'ionic-angular';
 import { HttpServiceProvider } from "../../providers/http-service/http-service"
-// import { Ionic2RatingModule } from 'ionic2-rating';
-// import { TabsPage } from '../tabs/tabs';
 
-/**
- * Generated class for the ApptSurveyPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 
 
 @Component({
@@ -40,6 +32,7 @@ export class ApptSurveyPage {
   cancel() {
     this.viewCtrl.dismiss()
   }
+  survey = 'survey done'
 
   pushPage(tip, rating) {
     let survey = {
